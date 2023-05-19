@@ -1,0 +1,566 @@
+{
+  "global": {
+    "fr-radius-standard": {
+      "value": "4",
+      "type": "borderRadius"
+    },
+    "fr-state-focus": {
+      "value": "2",
+      "type": "borderWidth",
+      "description": "Used to signal when an element is focused"
+    },
+    "fr-component-border-weight": {
+      "value": "1",
+      "type": "borderWidth",
+      "description": "Standard border weight for components"
+    },
+    "fr-font-h-1": {
+      "value": {
+        "fontFamily": "Noto Sans",
+        "fontWeight": "Semi-Bold",
+        "fontSize": "17px"
+      },
+      "type": "typography",
+      "description": "This text style is used for page titles"
+    },
+    "fr-font-h-2": {
+      "value": {
+        "fontFamily": "Noto Sans",
+        "fontWeight": "Semi-Bold",
+        "fontSize": "14px"
+      },
+      "type": "typography",
+      "description": "This text style is used for component titles (e.g. Chartbook, Table title, Wrapper title)"
+    },
+    "fr-font-product-name": {
+      "value": {
+        "fontFamily": "Noto Sans",
+        "fontWeight": "Semi-Bold",
+        "fontSize": "13px"
+      },
+      "type": "typography",
+      "description": "This text style is used for the product name within the header adjacent to the logo mark"
+    },
+    "fr-font-body-semibold": {
+      "value": {
+        "fontFamily": "Noto Sans",
+        "fontWeight": "Semi-Bold",
+        "fontSize": "13px"
+      },
+      "type": "typography",
+      "description": "This text style is used for form labels"
+    },
+    "fr-font-body-semibold-button-primary": {
+      "value": {
+        "fontFamily": "Noto Sans",
+        "fontWeight": "Semi-Bold",
+        "fontSize": "13px"
+      },
+      "type": "typography",
+      "description": "This text style is used for primary buttons"
+    },
+    "fr-font-body-semibold-button-secondary": {
+      "value": {
+        "fontFamily": "Noto Sans",
+        "fontWeight": "Semi-Bold",
+        "fontSize": "13px"
+      },
+      "type": "typography",
+      "description": "This text style is used for secondary buttons"
+    },
+    "fr-font-body-semibold-button-secondary-disabled": {
+      "value": {
+        "fontFamily": "Noto Sans",
+        "fontWeight": "Semi-Bold",
+        "fontSize": "13px"
+      },
+      "type": "typography",
+      "description": "This text style is used for disabled secondary buttons"
+    },
+    "fr-font-body-semibold-all-caps": {
+      "value": {
+        "fontFamily": "Noto Sans",
+        "fontWeight": "Semi-Bold",
+        "fontSize": "13px",
+        "textCase": "All capitals"
+      },
+      "type": "typography",
+      "description": "This text style is used for the the fieldset legends"
+    },
+    "fr-font-body": {
+      "value": {
+        "fontFamily": "Noto Sans",
+        "fontWeight": "Regular",
+        "fontSize": "13px"
+      },
+      "type": "typography",
+      "description": "This text style is used for most standard text"
+    },
+    "fr-font-small": {
+      "value": {
+        "fontFamily": "Noto Sans",
+        "fontWeight": "Regular",
+        "fontSize": "11px"
+      },
+      "type": "typography",
+      "description": "This text style is used for footer text"
+    },
+    "fr-font-small-semibold": {
+      "value": {
+        "fontFamily": "Noto Sans",
+        "fontWeight": "Semi-Bold",
+        "fontSize": "11px"
+      },
+      "type": "typography",
+      "description": "This text style is used for small text column headers"
+    },
+    "fr-font-small-red": {
+      "value": {
+        "fontFamily": "Noto Sans",
+        "fontWeight": "Regular",
+        "fontSize": "11px"
+      },
+      "type": "typography",
+      "description": "This text style is used  for error messages."
+    },
+    "fr-font-small-link": {
+      "value": {
+        "fontFamily": "Noto Sans",
+        "fontWeight": "Regular",
+        "fontSize": "11px",
+        "textDecoration": "Underline"
+      },
+      "type": "typography",
+      "description": "This text style is used for footer text links."
+    },
+    "fr-font-body-placeholder": {
+      "value": {
+        "fontFamily": "Noto Sans",
+        "fontWeight": "Regular Italic",
+        "fontSize": "13px"
+      },
+      "type": "typography",
+      "description": "This text style is used for placeholder text within untouched form fields."
+    },
+    "fr-font-body-link": {
+      "value": {
+        "fontFamily": "Noto Sans",
+        "fontWeight": "Regular",
+        "fontSize": "13px",
+        "textDecoration": "Underline"
+      },
+      "type": "typography",
+      "description": "This text style is used for standard links (Text within the <a> tag). Additional information about link usage and states may be found in the components section of the system guide."
+    },
+    "fr-font-monospaced": {
+      "value": {
+        "fontFamily": "Fira Code",
+        "fontWeight": "Regular",
+        "fontSize": "12"
+      },
+      "type": "typography"
+    },
+    "fr-ui-header": {
+      "value": "4",
+      "type": "borderWidth"
+    }
+  },
+  "dark-mode": {
+    "fr-brand-primary": {
+      "value": "#5464FF",
+      "type": "color"
+    },
+    "fr-brand-secondary": {
+      "value": "#00B2A9",
+      "type": "color"
+    },
+    "fr-brand-accent": {
+      "value": "#BFE4E3",
+      "type": "color"
+    },
+    "fr-component-body-background": {
+      "value": "#1C1E2C",
+      "type": "color"
+    },
+    "fr-component-body-background-alt": {
+      "value": "#272C3F",
+      "type": "color"
+    },
+    "fr-nav-background": {
+      "value": "#1C1E2C",
+      "type": "color"
+    },
+    "fr-component-border": {
+      "value": "#5E6678",
+      "type": "color"
+    },
+    "fr-component-header-background": {
+      "value": "#3B425F",
+      "type": "color"
+    },
+    "fr-page-background": {
+      "value": "#191925",
+      "type": "color"
+    },
+    "fr-transparent": {
+      "value": "rgba(0,0,0,0)",
+      "type": "color"
+    },
+    "fr-text-default": {
+      "value": "#ECF0F1",
+      "type": "color"
+    },
+    "fr-state-new": {
+      "value": "#6FB7ED",
+      "type": "color"
+    },
+    "fr-state-severe": {
+      "value": "#F86612",
+      "type": "color"
+    },
+    "fr-state-selected-border": {
+      "value": "#A3ACFF",
+      "type": "color"
+    },
+    "fr-state-selected-background": {
+      "value": "#3A425E",
+      "type": "color"
+    },
+    "fr-state-linked": {
+      "value": "#A3ACFF",
+      "type": "color"
+    },
+    "fr-state-utility": {
+      "value": "#B0B0B5",
+      "type": "color"
+    },
+    "fr-state-focused": {
+      "value": "#00B2A9",
+      "type": "color"
+    },
+    "fr-button-primary-background": {
+      "value": "#5464FF",
+      "type": "color"
+    },
+    "fr-button-primary-text": {
+      "value": "#FFFFFF",
+      "type": "color"
+    },
+    "fr-viz-1": {
+      "value": "#6FB7ED",
+      "type": "color"
+    },
+    "fr-viz-2": {
+      "value": "#E2C2F3",
+      "type": "color"
+    },
+    "fr-viz-3": {
+      "value": "#ECD8A3",
+      "type": "color"
+    },
+    "fr-viz-4": {
+      "value": "#6AEFDD",
+      "type": "color"
+    },
+    "fr-viz-5": {
+      "value": "#B1B9FF",
+      "type": "color"
+    },
+    "fr-viz-6": {
+      "value": "#FA9961",
+      "type": "color"
+    },
+    "fr-viz-7": {
+      "value": "#ECF0F1",
+      "type": "color"
+    },
+    "fr-viz-8": {
+      "value": "#F58ECB",
+      "type": "color"
+    },
+    "fr-viz-positive": {
+      "value": "#62F4AD",
+      "type": "color"
+    },
+    "fr-viz-negative": {
+      "value": "#FF94AB",
+      "type": "color"
+    },
+    "fr-alert-text": {
+      "value": "#FFFFFF",
+      "type": "color"
+    },
+    "fr-alert-info-border": {
+      "value": "#E0F2FF",
+      "type": "color"
+    },
+    "fr-alert-info-icon": {
+      "value": "#E0F2FF",
+      "type": "color"
+    },
+    "fr-alert-info-background": {
+      "value": "#005999",
+      "type": "color"
+    },
+    "fr-alert-success-border": {
+      "value": "#E0FFE6",
+      "type": "color"
+    },
+    "fr-alert-success-icon": {
+      "value": "#E0FFE6",
+      "type": "color"
+    },
+    "fr-alert-success-background": {
+      "value": "#2E6039",
+      "type": "color"
+    },
+    "fr-alert-warning-border": {
+      "value": "#FFF8D6",
+      "type": "color"
+    },
+    "fr-alert-warning-icon": {
+      "value": "#EFEAD0",
+      "type": "color"
+    },
+    "fr-alert-warning-background": {
+      "value": "#695804",
+      "type": "color"
+    },
+    "fr-alert-error-border": {
+      "value": "#FFE7E7",
+      "type": "color"
+    },
+    "fr-alert-error-icon": {
+      "value": "#FFE7E7",
+      "type": "color"
+    },
+    "fr-alert-error-background": {
+      "value": "#9E0000",
+      "type": "color"
+    },
+    "fr-text-contrast": {
+      "value": "#2B2B2B",
+      "type": "color"
+    },
+    "fr-canvas-background": {
+      "value": "222533",
+      "type": "color"
+    },
+    "fr-console-background": {
+      "value": "#1C1E2C",
+      "type": "color"
+    },
+    "fr-console-highlight": {
+      "value": "#3B425F",
+      "type": "color"
+    },
+    "fr-text-chart": {
+      "value": "ECF0F1",
+      "type": "color",
+      "description": "for use with brand-secondary background charts"
+    }
+  },
+  "light-mode": {
+    "fr-brand-primary": {
+      "value": "#333695",
+      "type": "color"
+    },
+    "fr-brand-secondary": {
+      "value": "#00A19C",
+      "type": "color"
+    },
+    "fr-brand-accent": {
+      "value": "#BFE4E3",
+      "type": "color"
+    },
+    "fr-component-body-background": {
+      "value": "#FFFFFF",
+      "type": "color"
+    },
+    "fr-component-body-background-alt": {
+      "value": "#F6F6F6",
+      "type": "color"
+    },
+    "fr-nav-background": {
+      "value": "#FFFFFF",
+      "type": "color"
+    },
+    "fr-component-border": {
+      "value": "#CBCBCB",
+      "type": "color"
+    },
+    "fr-component-header-background": {
+      "value": "#F2F2F2",
+      "type": "color"
+    },
+    "fr-page-background": {
+      "value": "#FBFBFB",
+      "type": "color"
+    },
+    "fr-transparent": {
+      "value": "rgba(0,0,0,0)",
+      "type": "color"
+    },
+    "fr-text-default": {
+      "value": "#3C3C3D",
+      "type": "color"
+    },
+    "fr-state-new": {
+      "value": "#064DFF",
+      "type": "color"
+    },
+    "fr-state-severe": {
+      "value": "#CA0000",
+      "type": "color"
+    },
+    "fr-state-selected-border": {
+      "value": "#B58C12",
+      "type": "color"
+    },
+    "fr-state-selected-background": {
+      "value": "#FFFAE5",
+      "type": "color"
+    },
+    "fr-state-linked": {
+      "value": "#333695",
+      "type": "color"
+    },
+    "fr-state-utility": {
+      "value": "#767676",
+      "type": "color"
+    },
+    "fr-state-focused": {
+      "value": "#008F8A",
+      "type": "color"
+    },
+    "fr-button-primary-background": {
+      "value": "#333695",
+      "type": "color"
+    },
+    "fr-button-primary-text": {
+      "value": "#ECF0F1",
+      "type": "color"
+    },
+    "fr-viz-1": {
+      "value": "#064DFF",
+      "type": "color"
+    },
+    "fr-viz-2": {
+      "value": "#8D0BD1",
+      "type": "color"
+    },
+    "fr-viz-3": {
+      "value": "#897200",
+      "type": "color"
+    },
+    "fr-viz-4": {
+      "value": "#008295",
+      "type": "color"
+    },
+    "fr-viz-5": {
+      "value": "#5232E7",
+      "type": "color"
+    },
+    "fr-viz-6": {
+      "value": "#C95200",
+      "type": "color"
+    },
+    "fr-viz-7": {
+      "value": "#636363",
+      "type": "color"
+    },
+    "fr-viz-8": {
+      "value": "#A60073",
+      "type": "color"
+    },
+    "fr-viz-positive": {
+      "value": "#008714",
+      "type": "color"
+    },
+    "fr-viz-negative": {
+      "value": "#CA0000",
+      "type": "color"
+    },
+    "fr-alert-text": {
+      "value": "#2B2B2B",
+      "type": "color"
+    },
+    "fr-alert-info-border": {
+      "value": "#0068B3",
+      "type": "color"
+    },
+    "fr-alert-info-icon": {
+      "value": "#0068B3",
+      "type": "color"
+    },
+    "fr-alert-info-background": {
+      "value": "#E0F2FF",
+      "type": "color"
+    },
+    "fr-alert-success-border": {
+      "value": "#34820D",
+      "type": "color"
+    },
+    "fr-alert-success-icon": {
+      "value": "#34820D",
+      "type": "color"
+    },
+    "fr-alert-success-background": {
+      "value": "#E0FFE6",
+      "type": "color"
+    },
+    "fr-alert-warning-border": {
+      "value": "#B58C12",
+      "type": "color"
+    },
+    "fr-alert-warning-icon": {
+      "value": "#A75400",
+      "type": "color"
+    },
+    "fr-alert-warning-background": {
+      "value": "#FFF8D6",
+      "type": "color"
+    },
+    "fr-alert-error-border": {
+      "value": "#CA0000",
+      "type": "color"
+    },
+    "fr-alert-error-icon": {
+      "value": "#CA0000",
+      "type": "color"
+    },
+    "fr-alert-error-background": {
+      "value": "#FFE7E7",
+      "type": "color"
+    },
+    "fr-text-contrast": {
+      "value": "#FFFFFF",
+      "type": "color"
+    },
+    "fr-canvas-background": {
+      "value": "#f8f8f8",
+      "type": "color"
+    },
+    "fr-console-background": {
+      "value": "#1C1E2C",
+      "type": "color"
+    },
+    "fr-console-highlight": {
+      "value": "#3B425F",
+      "type": "color"
+    },
+    "fr-text-chart": {
+      "value": "292929",
+      "type": "color",
+      "description": "for use with brand-secondary background charts"
+    }
+  },
+  "$themes": [],
+  "$metadata": {
+    "tokenSetOrder": [
+      "global",
+      "dark-mode",
+      "light-mode"
+    ]
+  }
+}
