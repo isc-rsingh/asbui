@@ -1,0 +1,24 @@
+.mdc-list-item__start {
+    margin-right:8px;
+    margin-left:8px;
+}
+
+.step-container {
+    display:grid;
+    grid-template-columns: 32px 32px 1fr;
+}
+
+.icon-section {
+    position: relative;
+    top:4px;
+}
+
+.description-section {
+    position: relative;
+    top:-10px;
+}
+
+.description-text {
+    max-width: 100px;
+    text-overflow: ellipsis;
+}

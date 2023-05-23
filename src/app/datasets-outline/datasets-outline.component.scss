@@ -1,0 +1,32 @@
+.top-level-expander {
+    height: 36px;
+    background: #F2F2F2;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.dataset-section-header {
+    padding-left: 12px;
+    padding-right:12px;
+}
+
+mat-label {
+    color:#3C3C3D;
+    font-weight: 400;
+    font-size: 13px;
+}
+
+mat-form-field {
+    padding-top: 10px;
+}
+
+.dataset-outline-body {
+    max-height: 30vh;
+    overflow-y: auto;
+    max-width: 300px;
+    text-overflow: ellipsis;
+}
+
+:host ::ng-deep .mat-expansion-panel-body {
+    padding-right:0;
+}

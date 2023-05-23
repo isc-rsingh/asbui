@@ -1,0 +1,54 @@
+<mat-accordion [togglePosition]="'before'">
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header  class="top-level-expander">
+            <mat-panel-title>Datasets</mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="dataset-outline-body">
+            <mat-form-field>
+                <mat-label>Filter...</mat-label>
+                <input matInput [(ngModel)]="filter" name="filterInput" (change)="filterResults()">
+                <mat-icon fontIcon="filter_list" matSuffix></mat-icon>
+            </mat-form-field>
+
+            <mat-accordion [togglePosition]="'before'" multi="true">
+
+                <mat-expansion-panel [expanded]="true">
+                    <mat-expansion-panel-header  class="dataset-section-header">
+                        Model Inputs / Data Sources
+                    </mat-expansion-panel-header>
+                    <mat-list>
+                        <mat-list-item *ngFor="let inp of filteredInputs">
+                            <mat-icon matListItemIcon fontIcon="grid_on"></mat-icon>
+                            {{inp.name}}
+                        </mat-list-item>
+                    </mat-list>
+                </mat-expansion-panel>
+
+                <mat-expansion-panel [expanded]="true">
+                    <mat-expansion-panel-header  class="dataset-section-header">
+                        Environment Variables
+                    </mat-expansion-panel-header>
+                    <mat-list>
+                        <mat-list-item *ngFor="let inp of filteredEnvironments">
+                            <mat-icon matListItemIcon fontIcon="grid_on"></mat-icon>
+                            {{inp.name}} - {{inp.representation}}
+                        </mat-list-item>
+                    </mat-list>
+                </mat-expansion-panel>
+                
+                <mat-expansion-panel [expanded]="true">
+                    <mat-expansion-panel-header  class="dataset-section-header">
+                        Model Outputs
+                    </mat-expansion-panel-header>
+                    <mat-list>
+                        <mat-list-item *ngFor="let inp of filteredOutputs">
+                            <mat-icon matListItemIcon fontIcon="grid_on"></mat-icon>
+                            {{inp.name}}
+                        </mat-list-item>
+                    </mat-list>
+                </mat-expansion-panel>
+
+            </mat-accordion>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>

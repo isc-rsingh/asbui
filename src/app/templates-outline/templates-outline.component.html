@@ -1,0 +1,38 @@
+<mat-accordion [togglePosition]="'before'">
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header class="top-level-expander">
+            <mat-panel-title>Model Templates</mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field>
+            <mat-label>Filter...</mat-label>
+            <input matInput [(ngModel)]="filter" name="filterInput" (change)="filterResults()">
+            <mat-icon fontIcon="filter_list" matSuffix></mat-icon>
+        </mat-form-field>
+        <mat-accordion [togglePosition]="'before'" multi="true">
+            <mat-expansion-panel [expanded]="true">
+                <mat-expansion-panel-header  class="dataset-section-header">
+                    Standard Models
+                </mat-expansion-panel-header>
+                <mat-list>
+                    <mat-list-item *ngFor="let inp of filteredSystemTemplates">
+                        <img src="./assets/template.svg" >
+                        {{inp.name}}
+                    </mat-list-item>
+                </mat-list>
+            </mat-expansion-panel>
+            
+            <mat-expansion-panel [expanded]="true">
+                <mat-expansion-panel-header  class="dataset-section-header">
+                    User Models
+                </mat-expansion-panel-header>
+                <mat-list>
+                    <mat-list-item *ngFor="let inp of filteredUserTemplates">
+                        <img src="./assets/template.svg" >
+                        {{inp.name}}
+                    </mat-list-item>
+                </mat-list>
+            </mat-expansion-panel>
+
+        </mat-accordion>
+    </mat-expansion-panel>
+</mat-accordion>
