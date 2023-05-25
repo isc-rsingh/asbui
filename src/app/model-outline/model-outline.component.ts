@@ -8,7 +8,9 @@ import { ObjectFile } from '../types/model-file';
 })
 export class ModelOutlineComponent {
 
+  public expanded:boolean = true;
   public filter="";
+  
   _currentDocument:ObjectFile;
 
   get currentDocument() {

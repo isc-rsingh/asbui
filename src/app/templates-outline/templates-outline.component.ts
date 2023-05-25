@@ -10,6 +10,10 @@ import { lastValueFrom} from 'rxjs';
 })
 export class TemplatesOutlineComponent implements OnInit {
   
+  public expanded:boolean = true;
+  public standardExpanded:boolean = true;
+  public userExpanded:boolean = true;
+  
   public filter = "";
   public systemTemplates: TemplateFile[];
   public userTemplates: TemplateFile[];

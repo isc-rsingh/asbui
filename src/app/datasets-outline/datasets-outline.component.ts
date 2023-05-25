@@ -20,6 +20,11 @@ export interface environmentSummary {
 export class DatasetsOutlineComponent {
   
   _currentDocument:ObjectFile;
+
+  public expanded:boolean = true;
+  public inputsExpanded:boolean = true;
+  public environmentExpanded:boolean = true;
+  public outputsExpanded:boolean = true;
   
   fileInputs: dataSet[];
   fileOutputs: dataSet[];

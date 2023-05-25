@@ -1,15 +1,16 @@
-<mat-accordion [togglePosition]="'before'">
-    <mat-expansion-panel [expanded]="true">
-        <mat-expansion-panel-header class="top-level-expander">
-            <mat-panel-title>Model Outline</mat-panel-title>
-        </mat-expansion-panel-header>
-        <div class="model-outline-body">
-            <mat-form-field>
-                <mat-label>Filter...</mat-label>
-                <input matInput [(ngModel)]="filter" name="filterInput" (change)="filterResults()">
-                <mat-icon fontIcon="filter_list" matSuffix></mat-icon>
-            </mat-form-field>
+<div class="expander-header">
+    <mat-icon fontIcon="arrow_drop_down" class="expander-icon" *ngIf="expanded" (click)="expanded = !expanded"></mat-icon>
+    <mat-icon fontIcon="arrow_drop_up" class="expander-icon" *ngIf="!expanded" (click)="expanded = !expanded"></mat-icon>
+    <span class="expander-title">Model Outline</span>
+</div>
+<section class="content-container">
+    <section *ngIf="expanded">
+        <div class="filter-input-container">
+            <input class="filter-input" type="text" [(ngModel)]="filter" name="filterInput" (change)="filterResults()" placeholder="Find...">
+            <mat-icon fontIcon="filter_list" matSuffix></mat-icon>
+        </div>
+        <div class="steps-container">
             <app-model-outline-group [steps]="currentDocument.pipelines" [filter]="filter" [expand]="true"></app-model-outline-group>
         </div>
-    </mat-expansion-panel>
-</mat-accordion>
+    </section>
+</section>
