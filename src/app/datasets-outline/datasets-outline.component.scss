@@ -1,0 +1,134 @@
+.expander-header {
+    height: 36px;
+    background: #F2F2F2;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+}
+
+.expander-icon {
+    color:#3C3C3D
+}
+
+.expander-title {
+    height: 19px;
+
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+
+
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+
+    color: #3C3C3D;
+}
+
+.content-container {
+    padding-bottom: 10px;
+}
+
+.filter-input-container {
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left:10px;
+    padding: 0px 10px;
+    gap: 8px;
+
+    width: 240px;
+    height: 36px;
+    border: 1px solid #CBCBCB;
+    border-radius: 4px;
+
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+    margin-top: 10px;
+}
+
+.filter-input {
+    background: #FFFFFF;
+    border:none;
+    width:200px;
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+}
+
+.filter-input:focus {
+    outline: none;
+}
+
+.subsection-expander-header {
+    height: 36px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left:21px;
+    padding-right:0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-top:21px;
+}
+
+.subsection-expander-icon {
+    color:#3C3C3D
+}
+
+.subsection-expander-title {
+    height: 19px;
+
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    
+    color: #3C3C3D;
+        
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+}
+
+.data-source-section {
+    display: flex;
+    flex-flow: row;
+    margin-left:45px;
+    gap:10px;
+}
+
+.data-source-name {
+    height: 19px;
+
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+
+    color: #3C3C3D;
+
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+
+    width:300px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    display:inline-block;
+}

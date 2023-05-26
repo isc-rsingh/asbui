@@ -1,0 +1,21 @@
+<div>
+    <section class="outline-container" *ngFor="let step of steps">
+        <div class="step-container">
+            <section class="expand-section">
+                <mat-icon fontIcon="arrow_drop_down" *ngIf="expand && expandableStep(step)" (click)="toggleExpand()"></mat-icon>
+                <mat-icon fontIcon="arrow_right" *ngIf="!expand && expandableStep(step)" (click)="toggleExpand()"></mat-icon>
+            </section>
+            <section class="icon-section">
+                <img src="./assets/pipeline.svg" *ngIf="step.stepType==='pipeline'" class="step-icon">
+                <img src="./assets/group.svg"  *ngIf="step.stepType==='group'" class="step-icon">
+                <img src="./assets/step.svg"  *ngIf="!['pipeline','group'].includes(step.stepType)" class="step-icon">
+            </section>
+            <section class="description-section">
+                <p class="description-text">{{step.description}}</p>
+            </section>
+        </div>
+        <div *ngIf="expand" class="child-steps-container">
+            <app-model-outline-group *ngIf="step.stepType==='group' || step.stepType==='pipeline'" [filter]="filter" [steps]="getGroupSteps(step)" [expand]="false"></app-model-outline-group>
+        </div>
+    </section>
+</div>

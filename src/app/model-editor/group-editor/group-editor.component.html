@@ -1,0 +1,20 @@
+<div class="group-component-container">
+    <div class="group-container">
+        <div class="group-header">
+            {{group.description}}
+        </div>
+        <div class="step-container">
+            Steps go here...
+        </div>
+
+        <div class="add-new-step-container">
+            <mat-icon fontIcon="add_circle_outline" class="add-icon"></mat-icon>
+            <span class="add-text">Add:</span>
+            <input type="text" placeholder="Click to add new step:" name="step-description" class="add-new-step-input">
+        </div>
+    </div>
+    <div class="group-next-arrow">
+        <img src="./assets/arrow.svg">
+        <img src="./assets/add_circle.jpg" class="add_circle_outline" *ngIf="isLastGroup" (click)="addNewGroup()">
+    </div>
+</div>

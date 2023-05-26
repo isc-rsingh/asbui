@@ -1,0 +1,79 @@
+<!-- <mat-accordion [togglePosition]="'before'">
+    <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header class="top-level-expander">
+            <mat-panel-title>Model Templates</mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-form-field>
+            <mat-label>Filter...</mat-label>
+            <input matInput [(ngModel)]="filter" name="filterInput" (change)="filterResults()">
+            <mat-icon fontIcon="filter_list" matSuffix></mat-icon>
+        </mat-form-field>
+        <mat-accordion [togglePosition]="'before'" multi="true">
+            <mat-expansion-panel [expanded]="true">
+                <mat-expansion-panel-header  class="dataset-section-header">
+                    Standard Models
+                </mat-expansion-panel-header>
+                <mat-list>
+                    <mat-list-item *ngFor="let inp of filteredSystemTemplates">
+                        <img src="./assets/template.svg" >
+                        {{inp.name}}
+                    </mat-list-item>
+                </mat-list>
+            </mat-expansion-panel>
+            
+            <mat-expansion-panel [expanded]="true">
+                <mat-expansion-panel-header  class="dataset-section-header">
+                    User Models
+                </mat-expansion-panel-header>
+                <mat-list>
+                    <mat-list-item *ngFor="let inp of filteredUserTemplates">
+                        <img src="./assets/template.svg" >
+                        {{inp.name}}
+                    </mat-list-item>
+                </mat-list>
+            </mat-expansion-panel>
+
+        </mat-accordion>
+    </mat-expansion-panel>
+</mat-accordion> -->
+<div class="expander-header">
+    <mat-icon fontIcon="arrow_drop_down" class="expander-icon" *ngIf="expanded" (click)="expanded = !expanded"></mat-icon>
+    <mat-icon fontIcon="arrow_drop_up" class="expander-icon" *ngIf="!expanded" (click)="expanded = !expanded"></mat-icon>
+    <span class="expander-title">Model Templates</span>
+</div>
+<section class="content-container">
+    <section *ngIf="expanded">
+        <div class="filter-input-container">
+            <input class="filter-input" type="text" [(ngModel)]="filter" name="filterInput" (change)="filterResults()" placeholder="Find...">
+            <mat-icon fontIcon="filter_list" matSuffix></mat-icon>
+        </div>
+
+
+        <div class="subsection-expander-header">
+            <mat-icon fontIcon="arrow_drop_down" class="subsection-expander-icon" *ngIf="standardExpanded" (click)="standardExpanded = !standardExpanded"></mat-icon>
+            <mat-icon fontIcon="arrow_drop_up" class="subsection-expander-icon" *ngIf="!standardExpanded" (click)="standardExpanded = !standardExpanded"></mat-icon>
+            <span class="subsection-expander-title">Standard Templates</span>
+        </div>
+
+        <div *ngIf="standardExpanded">
+            <div *ngFor="let inp of filteredSystemTemplates" class="template-section">
+                <img src="./assets/template.svg">
+                <span class="template-name">{{inp.name}}</span> 
+            </div>
+        </div>
+
+        <div class="subsection-expander-header">
+            <mat-icon fontIcon="arrow_drop_down" class="subsection-expander-icon" *ngIf="userExpanded" (click)="userExpanded = !userExpanded"></mat-icon>
+            <mat-icon fontIcon="arrow_drop_up" class="subsection-expander-icon" *ngIf="!userExpanded" (click)="userExpanded = !userExpanded"></mat-icon>
+            <span class="subsection-expander-title">User Templates</span>
+        </div>
+
+        <div *ngIf="userExpanded">
+            <div *ngFor="let inp of filteredUserTemplates" class="template-section">
+                <img src="./assets/template.svg">
+                <span class="template-name">{{inp.name}}</span> 
+            </div>
+        </div>
+    </section>  
+    
+</section>  

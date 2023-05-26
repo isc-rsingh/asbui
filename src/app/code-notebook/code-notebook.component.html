@@ -1,0 +1,13 @@
+<section class="main-container">
+    <section class="model-info-workspace">
+        <app-datasets-outline [currentDocument]="currentDocument"></app-datasets-outline>
+        <app-model-outline [currentDocument]="currentDocument"></app-model-outline>
+        <app-templates-outline></app-templates-outline>
+    </section>
+    <section class="model-editor-workspace">
+        <app-editor-pane [currentDocument]="currentDocument"></app-editor-pane>
+    </section>
+    <section class="model-explorer-workspace">
+        <app-data-preview></app-data-preview>
+    </section>
+</section>

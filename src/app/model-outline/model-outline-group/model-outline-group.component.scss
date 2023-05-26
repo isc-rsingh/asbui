@@ -1,0 +1,27 @@
+.step-container {
+    display: grid;
+    grid-template-columns: 32px 32px 1fr;
+}
+
+.child-steps-container {
+    margin-left:30px;
+}
+
+.step-icon {
+    top:3px;
+    position: relative;
+}
+
+.description-text {
+    height: 19px;
+
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+
+    color: #3C3C3D;
+}
