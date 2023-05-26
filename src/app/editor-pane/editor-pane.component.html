@@ -1,0 +1,29 @@
+<div class="editor-pane-container">
+    <div class="search-input-container">
+        <mat-icon fontIcon="add" class="filter-icon"></mat-icon>
+        <input type="text" name="searchSteps" [(ngModel)]="filter" class="filter-input" placeholder="Search data and actions...">
+        <mat-icon fontIcon="search" class="filter-icon"></mat-icon>
+    </div>
+
+    <div class="model-name-container">
+        <span class="model-name">{{currentDocument.modelName}}</span>
+        <img src="./assets/play.svg" class="play-button">
+        <!-- <div class="button-container">
+            <img src="./assets/lowcodeview.svg" class="img-button" [ngClass]="{'selected':currentView===SelectedCodeView.LowCode}" (click)="changeView(SelectedCodeView.LowCode)">
+            <img src="./assets/pipeline.svg" class="img-button" [ngClass]="{'selected':currentView===SelectedCodeView.Diagram}"  (click)="changeView(SelectedCodeView.Diagram)">
+            <img src="./assets/codeview.svg" class="img-button" [ngClass]="{'selected':currentView===SelectedCodeView.Code}"  (click)="changeView(SelectedCodeView.Code)">
+        </div> -->
+        <mat-button-toggle-group [(ngModel)]="currentView">
+            <mat-button-toggle [value]="SelectedCodeView.LowCode"><img src="./assets/lowcodeview.svg" class="img-button"></mat-button-toggle>
+            <mat-button-toggle [value]="SelectedCodeView.Diagram"><img src="./assets/pipeline.svg" class="img-button"></mat-button-toggle>
+            <mat-button-toggle [value]="SelectedCodeView.Code"><img src="./assets/codeview.svg" class="img-button"></mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+
+    <div class="bread-crumb-container">
+        <app-breadcrumb [text]="'my org'" [context]="''" [iconType]="BreadcrumbIconType.Org"></app-breadcrumb>
+        <app-breadcrumb [text]="currentDocument.modelName" [context]="''" [iconType]="BreadcrumbIconType.Pipeline"></app-breadcrumb>
+    </div>
+
+    <app-model-editor [currentDocument]="currentDocument"></app-model-editor>
+</div>

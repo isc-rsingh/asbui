@@ -1,0 +1,33 @@
+.breadcrumb-container {
+    display: flex;    
+}
+
+.breadcrumb-text {
+    margin-left:3px;
+    margin-right:3px;
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 11px;
+    line-height: 15px;
+
+    display: flex;
+    align-items: center;
+
+    color: #333695;
+}
+
+.breadcrumb-divider {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    /* fr-text-default */
+
+    color: #3C3C3D;
+}

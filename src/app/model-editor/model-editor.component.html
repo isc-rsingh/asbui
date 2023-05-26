@@ -1,1 +1,3 @@
-<p>model-editor works!</p>
+<div class="model-editor-container">
+    <app-group-editor [group]="g" *ngFor="let g of groups" [isLastGroup]="g.stepId === lastGroupStepId"></app-group-editor>
+</div>

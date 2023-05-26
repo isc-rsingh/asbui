@@ -17,7 +17,9 @@ export class CurrentStateService {
     "pipelines":[]
   });
 
-  
+  get currentDocument():ObjectFile {
+    return this._currentDocument.value;
+  }
 
   get currentDocument$(): Observable<ObjectFile> {
     return this._currentDocument.asObservable();
