@@ -1,0 +1,57 @@
+.step-container {
+    border: 1px solid #CBCBCB;
+    border-radius: 4px;
+    margin-bottom:5px;
+}
+.step-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 4fr 1fr;
+    background: #F6F6F6;
+
+    height:39px;
+    align-items: center;
+}
+
+.step-icon {
+    margin-left: 9px;
+    height:18px;
+    width:18px;
+}
+
+.step-label {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 13px;
+
+    color: #3C3C3D;
+    margin-left:9px;
+    margin-right:2px;
+}
+
+.step-select {
+    width: 270px;
+    height: 28px;
+
+    background: #FFFFFF;
+
+    border: 1px solid #CBCBCB;
+    border-radius: 4px;
+}
+.step-option {
+    
+}
+.expander-section {
+    justify-self: center;
+}
+.step-component-container {
+    padding-top:20px;
+    padding-bottom:20px;
+    padding-left:8px;
+    padding-right:8px;
+
+}
+::ng-deep mat-select .mat-mdc-select-value {
+    padding:5px;
+    padding-left:8px;
+}

@@ -2,7 +2,15 @@ import { Injectable } from '@angular/core';
 import { GroupObject, ObjectFile, OperationObject, PipelineObject, StepType } from '../types/model-file';
 import { CurrentStateService } from './current-state.service';
 import { EditorContextService } from './editor-context.service';
-import { group } from '@angular/animations';
+import { Observable, of } from 'rxjs';
+
+
+export interface StepMetadata {
+  jsonName:string;
+  displayName:string;
+  description: string;
+  canAddToGroup: boolean;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +44,19 @@ export class StepService {
     currentStepGroup.push(newGroup);
   }
 
+  public GetStepTypes$(): Observable<StepMetadata[]> {
+    return of([
+      {jsonName:StepType.Pipeline, displayName:"Pipeline",description:"Independent set of instructions", canAddToGroup:false},
+      {jsonName:StepType.Group, displayName:"Group",description:"A group of instructions", canAddToGroup:false},
+      {jsonName:StepType.Merge, displayName:"Merge",description:"Merges two groups of data together", canAddToGroup:true},
+      {jsonName:StepType.SqlPopulate, displayName:"Get",description:"Retrieve data from an external source", canAddToGroup:true},
+      {jsonName:StepType.SqlAnnotate, displayName:"Declare",description:"Add a variable for use throughout the model", canAddToGroup:true},
+      {jsonName:StepType.ConditionAnnotate, displayName:"Conditional",description:"Add a conditional variable for use throughout the model", canAddToGroup:true},
+      {jsonName:StepType.Filter, displayName:"Filter",description:"Narrow the rows available in the model", canAddToGroup:true},
+      {jsonName:StepType.Export, displayName:"Export",description:"Write the model to an external source", canAddToGroup:true},
+    ]);
+  }
+
   private HighestStepId(steps:OperationObject[], currentMax:number): number {
     steps.forEach(s=> {
 
@@ -54,4 +75,5 @@ export class StepService {
 
     return currentMax;
   }
+  
 }

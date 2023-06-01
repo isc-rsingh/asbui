@@ -4,7 +4,7 @@
             {{group.description}}
         </div>
         <div class="step-container">
-            Steps go here...
+            <app-step-editor [step]="step" *ngFor="let step of group.arguments?.steps"></app-step-editor>
         </div>
 
         <div class="add-new-step-container">

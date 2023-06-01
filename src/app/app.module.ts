@@ -7,6 +7,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatListModule} from '@angular/material/list';
+import {MatSelectModule} from '@angular/material/select';
 
 import { AppComponent } from './app.component';
 import { CodeNotebookComponent } from './code-notebook/code-notebook.component';
@@ -24,6 +25,9 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from '@ang
 import { DatasetsOutlineGroupComponent } from './model-outline/model-outline-group/model-outline-group.component';
 import { EditorPaneComponent } from './editor-pane/editor-pane.component';
 import { BreadcrumbComponent } from './editor-pane/breadcrumb/breadcrumb.component';
+import { ConditionAnnotateEditorComponent } from './step-editor/condition-annotate-editor/condition-annotate-editor.component';
+import { FilterEditorComponent } from './step-editor/filter-editor/filter-editor.component';
+import { SqlAnnotateEditorComponent } from './step-editor/sql-annotate-editor/sql-annotate-editor.component';
 
 const appearance: MatFormFieldDefaultOptions = {
   appearance: 'outline'
@@ -44,7 +48,10 @@ const appearance: MatFormFieldDefaultOptions = {
     DataPreviewComponent,
     DatasetsOutlineGroupComponent,
     EditorPaneComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    ConditionAnnotateEditorComponent,
+    FilterEditorComponent,
+    SqlAnnotateEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +62,7 @@ const appearance: MatFormFieldDefaultOptions = {
     MatIconModule,
     MatInputModule,
     MatListModule,
+    MatSelectModule,
   ],
   providers: [
     {

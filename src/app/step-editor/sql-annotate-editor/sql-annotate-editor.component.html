@@ -1,0 +1,14 @@
+<div class="sql-annotate-editor-container">
+    <section class="annotation-name-section">
+        <div>Annotation Name:<span class="required">*</span></div>
+        <div><input name="annotation-name" type="text" [(ngModel)]="sqlAnnotateArgs.annotationName" class="annotation-name-input"></div>
+    </section>
+    <section class="table-name-section">
+        <div>Table Name:<span class="required">*</span></div>
+        <div><input name="table" type="text" [(ngModel)]="sqlAnnotateArgs.tableName" class="table-name-input"></div>
+    </section>
+    <section>
+        <div>Grouping Field:<span class="required">*</span></div>
+        <div><input name="table" type="text" [(ngModel)]="sqlAnnotateArgs.groupingField" class="grouping-field-input"></div>
+    </section>
+</div>

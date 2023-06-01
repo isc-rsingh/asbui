@@ -1,1 +1,27 @@
-<p>step-editor works!</p>
+<div class="step-container">
+    <div class="step-header">
+        <img src="./assets/step.svg" class="step-icon">
+        <span class="step-label">Step:</span>
+        <!-- <select name="stepType" [(ngModel)]="step.stepType" class="step-select">
+            <option *ngFor="let stepType of stepTypes" [ngValue]="stepType.jsonName">{{stepType.displayName}}</option>
+        </select>    -->
+        <mat-select [(value)]="step.stepType" class="step-select">
+            <mat-option *ngFor="let stepType of stepTypes" [value]="stepType.jsonName" class="step-option">{{stepType.displayName}}</mat-option>
+        </mat-select>
+        <section class="expander-section">
+            <mat-icon fontIcon="arrow_drop_down" class="expander-icon" *ngIf="expanded" (click)="expanded = !expanded"></mat-icon>
+            <mat-icon fontIcon="arrow_drop_up" class="expander-icon" *ngIf="!expanded" (click)="expanded = !expanded"></mat-icon>
+        </section>
+    </div>
+    <div class="step-component-container" *ngIf="expanded">
+        <div *ngIf="step.stepType===StepType.Pipeline">TODO</div>
+        <div *ngIf="step.stepType===StepType.Group">TODO</div>
+        <div *ngIf="step.stepType===StepType.Merge">TODO</div>
+        <div *ngIf="step.stepType===StepType.SqlPopulate">TODO</div>
+        <app-sql-annotate-editor [step]="step" *ngIf="step.stepType===StepType.SqlAnnotate"></app-sql-annotate-editor>
+        <app-condition-annotate-editor [step]="step" *ngIf="step.stepType===StepType.ConditionAnnotate"></app-condition-annotate-editor>
+        <app-filter-editor [step]="step"  *ngIf="step.stepType===StepType.Filter"></app-filter-editor>
+        <div *ngIf="step.stepType===StepType.Export">TODO</div>
+        
+    </div>
+</div>

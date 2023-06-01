@@ -1,0 +1,17 @@
+.annotation-name-input,
+.grouping-field-input,
+.table-name-input {
+    width:96%;
+    border: 1px solid #CBCBCB;
+    border-radius: 4px;
+    height:36px;
+}
+.required {
+    color:#CA0000;
+    margin-left:4px;
+}
+
+.table-name-section,
+.annotation-name-section {
+    margin-bottom:8px;
+}
