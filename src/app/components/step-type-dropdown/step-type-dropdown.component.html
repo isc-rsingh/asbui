@@ -1,0 +1,3 @@
+<mat-select [(value)]="stepType" class="step-select" [placeholder]="placeholder">
+    <mat-option *ngFor="let stepType of stepTypes" [value]="stepType.jsonName" class="step-option">{{stepType.displayName}}</mat-option>
+</mat-select>

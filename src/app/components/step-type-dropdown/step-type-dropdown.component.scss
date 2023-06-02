@@ -1,0 +1,27 @@
+.step-select {
+    width: 270px;
+    height: 28px;
+
+    background: #FFFFFF;
+
+    border: 1px solid #CBCBCB;
+    border-radius: 4px;
+}
+.step-option {
+    
+}
+
+:host ::ng-deep .mat-mdc-select-placeholder {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    color:#767676;
+    margin-left:6px;
+}
+
+
+:host ::ng-deep .mat-mdc-select-arrow-wrapper {
+    margin-top:-8px;
+    margin-right:5px;
+}

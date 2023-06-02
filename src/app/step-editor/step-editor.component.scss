@@ -29,18 +29,6 @@
     margin-right:2px;
 }
 
-.step-select {
-    width: 270px;
-    height: 28px;
-
-    background: #FFFFFF;
-
-    border: 1px solid #CBCBCB;
-    border-radius: 4px;
-}
-.step-option {
-    
-}
 .expander-section {
     justify-self: center;
 }
@@ -51,7 +39,14 @@
     padding-right:8px;
 
 }
-::ng-deep mat-select .mat-mdc-select-value {
+:host ::ng-deep mat-select .mat-mdc-select-value {
     padding:5px;
     padding-left:8px;
+    padding-top:6px;
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+    color:#3C3C3D;
 }

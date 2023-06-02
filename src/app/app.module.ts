@@ -28,6 +28,7 @@ import { BreadcrumbComponent } from './editor-pane/breadcrumb/breadcrumb.compone
 import { ConditionAnnotateEditorComponent } from './step-editor/condition-annotate-editor/condition-annotate-editor.component';
 import { FilterEditorComponent } from './step-editor/filter-editor/filter-editor.component';
 import { SqlAnnotateEditorComponent } from './step-editor/sql-annotate-editor/sql-annotate-editor.component';
+import { StepTypeDropdownComponent } from './components/step-type-dropdown/step-type-dropdown.component';
 
 const appearance: MatFormFieldDefaultOptions = {
   appearance: 'outline'
@@ -51,7 +52,8 @@ const appearance: MatFormFieldDefaultOptions = {
     BreadcrumbComponent,
     ConditionAnnotateEditorComponent,
     FilterEditorComponent,
-    SqlAnnotateEditorComponent
+    SqlAnnotateEditorComponent,
+    StepTypeDropdownComponent
   ],
   imports: [
     BrowserModule,
