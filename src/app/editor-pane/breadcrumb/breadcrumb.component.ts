@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { EditorContextService } from 'src/app/services/editor-context.service';
 
 export enum BreadcrumbIconType {
   Org,
@@ -14,11 +15,18 @@ export enum BreadcrumbIconType {
 })
 export class BreadcrumbComponent {
   @Input() text:string;
-  @Input() context:string;
+  @Input() context:number | null;
   @Input() rightMostCrumb:boolean;
   @Input() iconType:BreadcrumbIconType;
+  
+  constructor(private editorContextService:EditorContextService) {}
 
   get BreadcrumbIconType() {
     return BreadcrumbIconType;
+  }
+  setContextToBreadcrumb() {
+    if (this.context) {
+      this.editorContextService.setCurrentFocusedStepId$(this.context);
+    }
   }
 }

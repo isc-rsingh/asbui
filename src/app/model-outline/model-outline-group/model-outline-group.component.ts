@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
+import { EditorContextService } from 'src/app/services/editor-context.service';
 import { GroupArgs, OperationObject, PipelineObject, StepType } from 'src/app/types/model-file';
 
 @Component({
@@ -10,6 +12,23 @@ export class DatasetsOutlineGroupComponent {
   @Input() steps:OperationObject[]=[];
   @Input() filter:string;
   @Input() expand:boolean;
+
+  constructor(public editorContextService:EditorContextService) {}
+  
+  private destroy$: Subject<void> = new Subject<void>();
+  currentStepId:number | null= null;
+  
+  ngOnInit(): void {
+    this.editorContextService.currentFocusedStepId$.pipe(takeUntil(this.destroy$)).subscribe((step) => {
+      this.currentStepId = step;
+    });
+  }
+  
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
 
   getGroupSteps(step:OperationObject):OperationObject[] {
     let steps:OperationObject[] = [];
@@ -32,5 +51,9 @@ export class DatasetsOutlineGroupComponent {
 
   toggleExpand() {
     this.expand = !this.expand;
+  }
+
+  setContextToStep(step:OperationObject) {
+    this.editorContextService.setCurrentFocusedStepId$(step.stepId);
   }
 }

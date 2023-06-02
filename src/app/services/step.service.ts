@@ -19,22 +19,32 @@ export class StepService {
 
   constructor(private currentState:CurrentStateService,private editorContext: EditorContextService) { }
 
-  ///TODO: Finish recursion
-  // public GetPathToStepId(file:ObjectFile, stepId:number):number|null[] {
+   public GetPathToStepId(file:ObjectFile, stepId:number):number[]|null {
     
-  //   file.pipelines.forEach(x => {
-  //     if (x.stepId === stepId) {
-  //       return [null];
-  //     }
-  //   });
+    const recurseSteps = (operation:OperationObject, path:number[]):void => {
+      if (this.stepHasChildStep(operation,stepId)) {
+        path.push(operation.stepId);
+        if (operation.stepType === StepType.Pipeline) {
+          const pipeline = operation as PipelineObject;
+          pipeline.steps.forEach((s:OperationObject)=>recurseSteps(s,path));
+        }
+        if (operation.stepType === StepType.Group) {
+          const grp = operation as GroupObject;
+          return grp.arguments?.steps.forEach((s:OperationObject)=>recurseSteps(s,path));
+        }
+      }
+    }
 
-  //   return [null];
-  // }
+    const rslt:number[]=[];
+    file.pipelines.forEach((p:PipelineObject)=>recurseSteps(p,rslt));
+    return rslt;
+  }
+
 
   public AddNewGroup(groupName: string) {
     let currentStepGroup = this.currentState.currentDocument.pipelines[0].steps;
     const newGroup:GroupObject = {
-      stepId:this.HighestStepId(currentStepGroup,0),
+      stepId:this.highestStepId(currentStepGroup,0),
       stepType:StepType.Group,
       description:groupName,
       arguments:{
@@ -57,23 +67,64 @@ export class StepService {
     ]);
   }
 
-  private HighestStepId(steps:OperationObject[], currentMax:number): number {
+  public GetStep(file: ObjectFile, stepId:number): OperationObject | null{
+    const recurseSteps = (operation:OperationObject):OperationObject | null => {
+      if (operation.stepId === stepId) {
+        return operation;
+      }
+      if (this.stepHasChildStep(operation,stepId)) {
+        let operations:OperationObject[] = [];
+        if (operation.stepType === StepType.Pipeline) {
+           operations = (operation as PipelineObject).steps;
+        }
+        if (operation.stepType === StepType.Group) {
+          operations = (operation as GroupObject).arguments?.steps || [];
+        }
+        for (let i=0;i<operations.length;i++) {
+          const r = recurseSteps(operations[i])  ;
+          if (r) {return r;}
+        }
+      }
+      return null;
+    }
+
+    for (let i=0;i<file.pipelines.length;i++) {
+      const rslt = recurseSteps(file.pipelines[i]);
+      if (rslt) {return rslt;}
+    }
+
+    return null;
+  }
+
+  private highestStepId(steps:OperationObject[], currentMax:number): number {
     steps.forEach(s=> {
 
       if (s.stepId > currentMax) {currentMax = s.stepId;}
 
       if (s.stepType === StepType.Pipeline) {
         const pipelineStep = s as PipelineObject;
-        currentMax = this.HighestStepId(pipelineStep.steps, currentMax);
+        currentMax = this.highestStepId(pipelineStep.steps, currentMax);
       }
       if (s.stepType === StepType.Group) {
         const groupStep = s as GroupObject;
-        currentMax = this.HighestStepId(groupStep.arguments?.steps || [], currentMax);
+        currentMax = this.highestStepId(groupStep.arguments?.steps || [], currentMax);
       }
 
     });
 
     return currentMax;
   }
-  
+
+  private stepHasChildStep(step: OperationObject, childStepId:number):boolean {
+    if (step.stepId === childStepId) {return true;}
+    if (step.stepType === StepType.Pipeline) {
+      const pipeline = step as PipelineObject;
+      return pipeline.steps.some((x:OperationObject) => this.stepHasChildStep(x,childStepId));
+    }
+    if (step.stepType === StepType.Group) {
+      const grp = step as GroupObject;
+      return grp.arguments?.steps.some((x:OperationObject) => this.stepHasChildStep(x,childStepId)) || false;
+    }
+    return false;
+  }
 }

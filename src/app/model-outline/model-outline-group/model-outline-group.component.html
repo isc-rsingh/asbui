@@ -1,6 +1,6 @@
 <div>
     <section class="outline-container" *ngFor="let step of steps">
-        <div class="step-container">
+        <div class="step-container" [ngClass]="{'selected-step':step.stepId===currentStepId}">
             <section class="expand-section">
                 <mat-icon fontIcon="arrow_drop_down" *ngIf="expand && expandableStep(step)" (click)="toggleExpand()"></mat-icon>
                 <mat-icon fontIcon="arrow_right" *ngIf="!expand && expandableStep(step)" (click)="toggleExpand()"></mat-icon>
@@ -10,7 +10,7 @@
                 <img src="./assets/group.svg"  *ngIf="step.stepType==='group'" class="step-icon">
                 <img src="./assets/step.svg"  *ngIf="!['pipeline','group'].includes(step.stepType)" class="step-icon">
             </section>
-            <section class="description-section">
+            <section class="description-section" (click)="setContextToStep(step)">
                 <p class="description-text">{{step.description}}</p>
             </section>
         </div>

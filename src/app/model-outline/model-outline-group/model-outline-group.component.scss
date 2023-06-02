@@ -1,6 +1,8 @@
 .step-container {
     display: grid;
     grid-template-columns: 32px 32px 1fr;
+    margin-right:5px;
+    cursor:pointer;
 }
 
 .child-steps-container {
@@ -24,4 +26,11 @@
     align-items: center;
 
     color: #3C3C3D;
+}
+
+.selected-step {
+    background: #FFFAE5;
+
+    border: 1px solid #B58C12;
+    border-radius: 4px;
 }

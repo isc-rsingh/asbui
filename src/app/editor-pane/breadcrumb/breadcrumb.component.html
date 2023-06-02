@@ -3,6 +3,6 @@
     <img src="./assets/pipeline.svg" *ngIf="iconType===BreadcrumbIconType.Pipeline">
     <img src="./assets/group.svg" *ngIf="iconType===BreadcrumbIconType.Group">
     <img src="./assets/step.svg" *ngIf="iconType===BreadcrumbIconType.Step">
-    <span class="breadcrumb-text">{{text}}</span>
+    <span class="breadcrumb-text" (click)="setContextToBreadcrumb()" [ngClass]="{'selectable-breadcrumb':context}">{{text}}</span>
     <span *ngIf="!rightMostCrumb" class="breadcrumb-divider">/</span>
 </div>
