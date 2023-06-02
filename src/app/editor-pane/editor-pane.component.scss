@@ -1,6 +1,8 @@
 .editor-pane-container {
     padding-left: 22px;
     padding-right:22px;
+    max-height: calc(100vh - 10emng );
+    overflow: hidden;
 }
 .search-input-container {
     display:grid;
@@ -91,4 +93,13 @@
 .bread-crumb-container {
     display:flex;
     gap:2px;
+}
+
+.thumbnail-bar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 100%;
+    z-index: 100;
 }
