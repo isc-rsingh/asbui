@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { StepService } from 'src/app/services/step.service';
-import { GroupObject } from 'src/app/types/model-file';
+import { GroupObject, OperationObject } from 'src/app/types/model-file';
 
 @Component({
   selector: 'app-group-editor',
@@ -8,8 +8,13 @@ import { GroupObject } from 'src/app/types/model-file';
   styleUrls: ['./group-editor.component.scss']
 })
 export class GroupEditorComponent {
-  @Input() group:GroupObject;
+  @Input() step:OperationObject;
   @Input() isLastGroup: boolean;
+
+  get group():GroupObject {
+    return this.step as GroupObject;
+  }
+
 
   constructor(private stepService:StepService) {}
 

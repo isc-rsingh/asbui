@@ -12,8 +12,8 @@ import { StepService } from '../services/step.service';
 export class ModelEditorComponent implements OnInit, OnDestroy {
   _currentDocument:ObjectFile;
 
-  public groups:GroupObject[]=[];
-  public lastGroupStepId:number;
+  public steps:OperationObject[]=[];
+  public lastStepId:number;
   public currentStepId: number | null;
 
   get currentDocument():ObjectFile {
@@ -55,10 +55,20 @@ export class ModelEditorComponent implements OnInit, OnDestroy {
       }
     }
 
-    this.groups = operationObjects.filter(x=>x.stepType === StepType.Group).map(x=>x as GroupObject);
+    this.steps = operationObjects;
 
-    if (this.groups.length) {
-      this.lastGroupStepId = this.groups[this.groups.length-1].stepId;
+    if (this.steps.length) {
+      this.lastStepId = this.steps[this.steps.length-1].stepId;
     }
+  }
+
+  addNew() {
+    
+  }
+  
+  
+  
+  get StepType() {
+    return StepType;
   }
 }

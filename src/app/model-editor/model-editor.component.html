@@ -1,3 +1,12 @@
 <div class="model-editor-container">
-    <app-group-editor [group]="g" *ngFor="let g of groups" [isLastGroup]="g.stepId === lastGroupStepId"></app-group-editor>
+    <div class="model-item" *ngFor="let step of steps">
+        <app-group-editor *ngIf="step.stepType===StepType.Group" [step]="step" [isLastGroup]="step.stepId === lastStepId"></app-group-editor>
+        <div class="standalone-step-container" *ngIf="step.stepType !== StepType.Group">
+            <app-step-editor [step]="step"></app-step-editor>
+            <div class="group-next-arrow">
+                <img src="./assets/arrow.svg">
+                <img src="./assets/add_circle.jpg" class="add_circle_outline" *ngIf="step.stepId===lastStepId" (click)="addNew()">
+            </div>
+        </div>
+    </div>
 </div>
