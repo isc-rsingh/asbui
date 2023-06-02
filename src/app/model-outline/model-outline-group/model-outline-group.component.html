@@ -2,8 +2,8 @@
     <section class="outline-container" *ngFor="let step of steps">
         <div class="step-container" [ngClass]="{'selected-step':step.stepId===currentStepId}">
             <section class="expand-section">
-                <mat-icon fontIcon="arrow_drop_down" *ngIf="expand && expandableStep(step)" (click)="toggleExpand()"></mat-icon>
-                <mat-icon fontIcon="arrow_right" *ngIf="!expand && expandableStep(step)" (click)="toggleExpand()"></mat-icon>
+                <mat-icon fontIcon="arrow_drop_down" *ngIf="expand[step.stepId] && expandableStep(step)" (click)="toggleExpand(step)"></mat-icon>
+                <mat-icon fontIcon="arrow_right" *ngIf="!expand[step.stepId] && expandableStep(step)" (click)="toggleExpand(step)"></mat-icon>
             </section>
             <section class="icon-section">
                 <img src="./assets/pipeline.svg" *ngIf="step.stepType==='pipeline'" class="step-icon">
@@ -14,8 +14,8 @@
                 <p class="description-text">{{step.description}}</p>
             </section>
         </div>
-        <div *ngIf="expand" class="child-steps-container">
-            <app-model-outline-group *ngIf="step.stepType==='group' || step.stepType==='pipeline'" [filter]="filter" [steps]="getGroupSteps(step)" [expand]="false"></app-model-outline-group>
+        <div *ngIf="expand[step.stepId]" class="child-steps-container">
+            <app-model-outline-group *ngIf="step.stepType==='group' || step.stepType==='pipeline'" [filter]="filter" [steps]="getGroupSteps(step)" [isFirstLevel]="false"></app-model-outline-group>
         </div>
     </section>
 </div>

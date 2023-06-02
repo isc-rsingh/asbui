@@ -21,7 +21,7 @@ export class DatasetsOutlineComponent {
   
   _currentDocument:ObjectFile;
 
-  public expanded:boolean = true;
+  public expanded:boolean = false;
   public inputsExpanded:boolean = true;
   public environmentExpanded:boolean = true;
   public outputsExpanded:boolean = true;

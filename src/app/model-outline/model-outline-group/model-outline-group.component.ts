@@ -11,17 +11,21 @@ import { GroupArgs, OperationObject, PipelineObject, StepType } from 'src/app/ty
 export class DatasetsOutlineGroupComponent {
   @Input() steps:OperationObject[]=[];
   @Input() filter:string;
-  @Input() expand:boolean;
+  @Input() isFirstLevel: boolean;
 
   constructor(public editorContextService:EditorContextService) {}
   
   private destroy$: Subject<void> = new Subject<void>();
   currentStepId:number | null= null;
+  expand:boolean[]=[];
   
   ngOnInit(): void {
     this.editorContextService.currentFocusedStepId$.pipe(takeUntil(this.destroy$)).subscribe((step) => {
       this.currentStepId = step;
     });
+    this.steps.forEach((s:OperationObject)=>{
+      this.expand[s.stepId] = this.isFirstLevel;
+    })
   }
   
   ngOnDestroy(): void {
@@ -49,8 +53,8 @@ export class DatasetsOutlineGroupComponent {
     return ['pipeline','group'].includes(step.stepType);
   }
 
-  toggleExpand() {
-    this.expand = !this.expand;
+  toggleExpand(step:OperationObject) {
+    this.expand[step.stepId] = !this.expand[step.stepId];
   }
 
   setContextToStep(step:OperationObject) {

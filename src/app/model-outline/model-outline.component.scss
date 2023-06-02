@@ -30,6 +30,8 @@
 
 .content-container {
     padding-bottom: 10px;
+    max-height:50vh;
+    overflow-y: auto;
 }
 
 .filter-input-container {
