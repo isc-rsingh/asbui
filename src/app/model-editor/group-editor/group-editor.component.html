@@ -8,9 +8,9 @@
         </div>
 
         <div class="add-new-step-container">
-            <mat-icon fontIcon="add_circle_outline" class="add-icon"></mat-icon>
+            <mat-icon fontIcon="add_circle_outline" class="add-icon" (click)="addNewStep()"></mat-icon>
             <span class="add-text">Add:</span>
-            <app-step-type-dropdown placeholder="Click to add a new step"></app-step-type-dropdown>
+            <app-step-type-dropdown placeholder="Click to add a new step" [(stepType)]="newStepType"></app-step-type-dropdown>
         </div>
     </div>
     <div class="group-next-arrow">

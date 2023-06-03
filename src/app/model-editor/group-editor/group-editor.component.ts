@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { StepService } from 'src/app/services/step.service';
-import { GroupObject, OperationObject } from 'src/app/types/model-file';
+import { GroupObject, OperationObject, StepType } from 'src/app/types/model-file';
 
 @Component({
   selector: 'app-group-editor',
@@ -11,6 +11,8 @@ export class GroupEditorComponent {
   @Input() step:OperationObject;
   @Input() isLastGroup: boolean;
 
+  newStepType:StepType;
+
   get group():GroupObject {
     return this.step as GroupObject;
   }
@@ -20,5 +22,8 @@ export class GroupEditorComponent {
 
   addNewGroup() {
     this.stepService.AddNewGroup("Group Name");
+  }
+  addNewStep() {
+    this.stepService.AddNewStepToGroup(this.group, this.newStepType)
   }
 }

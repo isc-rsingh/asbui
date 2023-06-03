@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { GroupObject, ObjectFile, OperationObject, PipelineObject, StepType } from '../types/model-file';
+import { ConditionAnnotateArgs, ExportArgs, FilterArgs, GroupArgs, GroupObject, MergeArgs, ObjectFile, OperationObject, PipelineObject, SqlAnnotateArgs, SqlPopulateArgs, StepObject, StepType } from '../types/model-file';
 import { CurrentStateService } from './current-state.service';
 import { EditorContextService } from './editor-context.service';
 import { Observable, of } from 'rxjs';
@@ -52,6 +52,20 @@ export class StepService {
       }
     };
     currentStepGroup.push(newGroup);
+  }
+
+  public AddNewStepToGroup(group:GroupObject, stepType:StepType) {
+
+    const newStep:OperationObject = {
+      stepId:this.highestStepId(this.currentState.currentDocument.pipelines,0)+1,
+      stepType,
+      arguments:{
+        ...this.defaultStepArgument(stepType)
+      }
+    }
+    
+    group.arguments = group.arguments || {steps:[]};
+    group.arguments.steps.push(newStep);
   }
 
   public GetStepTypes$(): Observable<StepMetadata[]> {
@@ -126,5 +140,28 @@ export class StepService {
       return grp.arguments?.steps.some((x:OperationObject) => this.stepHasChildStep(x,childStepId)) || false;
     }
     return false;
+  }
+
+  private defaultStepArgument(stepType:StepType) {
+    switch (stepType) {
+      case StepType.ConditionAnnotate:
+        return {} as ConditionAnnotateArgs;
+      case StepType.Export:
+        return {} as ExportArgs;
+      case StepType.Filter:
+        return {} as FilterArgs;
+      case StepType.Group:
+        return {
+          steps:[]
+        } as GroupArgs
+      case StepType.Merge:
+        return {} as MergeArgs;
+      case StepType.Pipeline:
+        return {}
+      case StepType.SqlAnnotate: 
+        return {} as SqlAnnotateArgs;
+      case StepType.SqlPopulate:
+        return {} as SqlPopulateArgs;
+    }
   }
 }
