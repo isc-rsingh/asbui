@@ -9,6 +9,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatListModule} from '@angular/material/list';
 import {MatSelectModule} from '@angular/material/select';
 
+import {DragDropModule} from '@angular/cdk/drag-drop';
+
 import { AppComponent } from './app.component';
 import { CodeNotebookComponent } from './code-notebook/code-notebook.component';
 import { DatasetsOutlineComponent } from './datasets-outline/datasets-outline.component';
@@ -65,6 +67,7 @@ const appearance: MatFormFieldDefaultOptions = {
     MatInputModule,
     MatListModule,
     MatSelectModule,
+    DragDropModule,
   ],
   providers: [
     {

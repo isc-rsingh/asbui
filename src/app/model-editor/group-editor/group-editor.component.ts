@@ -1,3 +1,4 @@
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, Input } from '@angular/core';
 import { StepService } from 'src/app/services/step.service';
 import { GroupObject, OperationObject, StepType } from 'src/app/types/model-file';
@@ -12,6 +13,7 @@ export class GroupEditorComponent {
   @Input() isLastGroup: boolean;
 
   newStepType:StepType;
+  expanded:boolean[]=[];
 
   get group():GroupObject {
     return this.step as GroupObject;
@@ -25,5 +27,17 @@ export class GroupEditorComponent {
   }
   addNewStep() {
     this.stepService.AddNewStepToGroup(this.group, this.newStepType)
+  }
+
+  drop(event:CdkDragDrop<OperationObject>) {
+    console.log(event);
+    const steps = this.group.arguments?.steps || [];
+    moveItemInArray(steps, event.previousIndex, event.currentIndex);
+  }
+
+
+
+  get StepType() {
+    return StepType;
   }
 }
