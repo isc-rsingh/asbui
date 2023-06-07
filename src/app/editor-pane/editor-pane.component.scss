@@ -1,7 +1,7 @@
 .editor-pane-container {
     padding-left: 22px;
     padding-right:22px;
-    max-height: calc(100vh - 10emng );
+    max-height: calc(100vh - 10em );
     overflow: hidden;
 }
 .search-input-container {
@@ -40,14 +40,16 @@
 .model-name-container {
     margin-top:12px;
     display:grid;
-    grid-template-columns: auto 48px 175px;
+    grid-template-columns: auto 175px;
 }
 
 .play-button {
+    height:20px;
+    width:20px;
+    margin-right:12px;
     position:relative;
-    top:7px;
-    height:36px;
-    width:36px;
+    top:3px;
+
 }
 
 .model-name {
@@ -64,30 +66,45 @@
 
 }
 
-.button-container {
+.buttons-container {
     display:flex;
-    justify-content: center;
-    border: 1px solid #CBCBCB;
-    border-radius: 4px;
-    width:100%;
-    background-color:#3C3C3D;
+    justify-content: end;
+    height:28px;
     
+    width:100%;
+    
+}
+.buttons-container .button-container:nth-child(2) {
+    border: 1px solid #CBCBCB;
+    border-radius: 4px 0 0 4px;
+    padding:0;
+    background-color:#f6f6f6;
+}
+.buttons-container .button-container:nth-child(3) {
+    border-top: 1px solid #CBCBCB;
+    border-bottom: 1px solid #CBCBCB;
+    padding:0;
+    background-color:#f6f6f6;
+}
+.buttons-container .button-container:nth-child(4) {
+    border: 1px solid #CBCBCB;
+    border-radius: 0 4px 4px 0;
+    padding:0;background-color:#f6f6f6;
 }
 
 .img-button {
     color:#000;
-    width:30px;
-    height:30px;
+    width:20px;
+    height:20px;
     padding-right:3px;
     position: relative;
     top:3px;
 }
 
-.img-button.selected {
+.buttons-container .button-container.selected {
     color:#333695;
     background-color: #FFFFFF;
     border: 1px solid #CBCBCB;
-    border-radius: 4px;
 }
 
 .bread-crumb-container {
