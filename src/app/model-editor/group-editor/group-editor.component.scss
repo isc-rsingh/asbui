@@ -133,6 +133,19 @@
     color:#3C3C3D;
 }
 
+.group-name-input {
+    width:100%;
+    background: #FFFFFF;
+    border: 1px solid #CBCBCB;
+    border-radius: 4px;
+    height:28px;
+}
+
+.group-name-label {
+    width:100%;
+    display: inline-block;
+}
+
 .cdk-drop-list-dragging .cdk-drag {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
   }
