@@ -3,6 +3,7 @@ import { ConditionAnnotateArgs, ExportArgs, FilterArgs, GroupArgs, GroupObject, 
 import { CurrentStateService } from './current-state.service';
 import { EditorContextService } from './editor-context.service';
 import { Observable, of } from 'rxjs';
+import { group } from '@angular/animations';
 
 
 export interface StepMetadata {
@@ -108,6 +109,64 @@ export class StepService {
     }
 
     return null;
+  }
+
+  public moveStepWithinGroup(stepToMoveId:number, stepToPlaceBeforeId:number, withinGroupId: number) {
+    const groupStep = this.GetStep(this.currentState.currentDocument,withinGroupId) as GroupObject;
+    const stepToMove = this.GetStep(this.currentState.currentDocument, stepToMoveId);
+    if (!groupStep || !stepToMove) {
+      console.log('Asked to move a step where either the group or step didn\'t exist');
+      return;
+    }
+    const groupSteps = groupStep.arguments?.steps || [];
+    const idxToRemove = groupSteps.indexOf(stepToMove);
+    groupStep.arguments?.steps.splice(idxToRemove,1);
+
+    const idxToInsert = groupSteps.findIndex(x=>x.stepId === stepToPlaceBeforeId);
+    if (idxToInsert < 0) {
+      console.log('Asked to move a group before a step that doesn\'t exist');
+      return;
+    }
+    groupStep.arguments?.steps.splice(idxToInsert,0,stepToMove);
+  }
+
+  public moveStepToADifferentGroup(stepToMoveId:number, stepToPlaceBeforeId:number, newGroupId: number, priorGroupId:number) {
+    const oldGroup = this.GetStep(this.currentState.currentDocument, priorGroupId) as GroupObject;
+    const stepToMove = this.GetStep(this.currentState.currentDocument, stepToMoveId);
+    if (!oldGroup || !stepToMove) {
+      console.log('Asked to move a step where either the group or step didn\'t exist');
+      return;
+    }
+
+    const oldGroupSteps = oldGroup.arguments?.steps || [];
+    const idxToRemove = oldGroupSteps.indexOf(stepToMove);
+    oldGroup.arguments?.steps.splice(idxToRemove,1);
+
+    const newGroup = this.GetStep(this.currentState.currentDocument, newGroupId) as GroupObject;
+    const newGroupSteps = newGroup.arguments?.steps || [];
+    const idxToInsert = newGroupSteps.findIndex(x=>x.stepId === stepToPlaceBeforeId);
+    if (idxToInsert < 0) {
+      console.log('Asked to move a group before a step that doesn\'t exist');
+      return;
+    }
+    newGroup.arguments?.steps.splice(idxToInsert,0,stepToMove);
+  }
+
+  public copyStepToGroup(stepIdToCopy:number, groupId: number, stepToPlaceBeforeId:number) {
+    const groupStep = this.GetStep(this.currentState.currentDocument,groupId) as GroupObject;
+    const stepToCopy = JSON.parse(JSON.stringify(this.GetStep(this.currentState.currentDocument, stepIdToCopy))) as OperationObject;
+    if (!groupStep || !stepToCopy) {
+      console.log('Asked to copy a step where either the group or step didn\'t exist');
+      return;
+    }
+    
+    const groupSteps = groupStep.arguments?.steps || [];
+    const idxToInsert = groupSteps.findIndex(x=>x.stepId === stepToPlaceBeforeId);
+    if (idxToInsert < 0) {
+      console.log('Asked to copy a group before a step that doesn\'t exist');
+      return;
+    }
+    groupStep.arguments?.steps.splice(idxToInsert,0,stepToCopy);
   }
 
   private highestStepId(steps:OperationObject[], currentMax:number): number {

@@ -1,4 +1,4 @@
-<div class="step-container">
+<div class="step-container" draggable="true" (dragover)="dragOver($event)" (dragstart)="dragStart($event)" (drop)="drop($event)">
     <div class="step-header">
         <img src="./assets/step.svg" class="step-icon">
         <span class="step-label">Step:</span>

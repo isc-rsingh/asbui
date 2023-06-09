@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
+import { DragHelperService, DragObjectType, DragSource } from 'src/app/services/drag-helper.service';
 import { EditorContextService } from 'src/app/services/editor-context.service';
+import { StepService } from 'src/app/services/step.service';
 import { GroupArgs, OperationObject, PipelineObject, StepType } from 'src/app/types/model-file';
 
 @Component({
@@ -12,8 +14,13 @@ export class DatasetsOutlineGroupComponent {
   @Input() steps:OperationObject[]=[];
   @Input() filter:string;
   @Input() isFirstLevel: boolean;
+  @Input() parentId: number;
 
-  constructor(public editorContextService:EditorContextService) {}
+  constructor(
+    private editorContextService:EditorContextService,
+    private dragHelperService:DragHelperService,
+    private stepService:StepService,
+    ) {}
   
   private destroy$: Subject<void> = new Subject<void>();
   currentStepId:number | null= null;
@@ -59,5 +66,42 @@ export class DatasetsOutlineGroupComponent {
 
   setContextToStep(step:OperationObject) {
     this.editorContextService.setCurrentFocusedStepId$(step.stepId);
+  }
+
+  dragStart(evt:DragEvent, step:OperationObject) {
+    this.dragHelperService.dragContext = {
+      id:step.stepId,
+      parentId: this.parentId,
+      dragObjectType: DragObjectType.Step,
+      dragSource:DragSource.ModelOutline
+    };
+  }
+
+  dragOver(evt:DragEvent, step:OperationObject):boolean | void{
+    const ctx = this.dragHelperService.dragContext;
+    if (ctx?.dragSource === DragSource.ModelOutline) {
+      const dataTransfer = evt.dataTransfer;
+      if (dataTransfer==null) {
+        return true;
+      }
+      dataTransfer.dropEffect = 'move';
+      evt.preventDefault();
+      return false;
+    }
+  }
+
+  drop(evt:DragEvent, step:OperationObject) {
+      const ctx = this.dragHelperService.dragContext;
+      if (!ctx) {
+        return;
+      }
+
+      if (ctx.parentId === this.parentId) {
+        this.stepService.moveStepWithinGroup(ctx.id,step.stepId,this.parentId);
+      }
+
+      if (ctx.parentId !== this.parentId && this.parentId && ctx.parentId) {
+        this.stepService.moveStepToADifferentGroup(ctx.id, step.stepId, this.parentId, ctx.parentId);
+      }
   }
 }

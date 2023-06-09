@@ -4,29 +4,8 @@
             <span *ngIf="!editing" (click)="showDescriptionInput()" class="group-name-label">{{group.description}}</span>
             <input *ngIf="editing" type="text" name="group-name" [(ngModel)]="group.description" class="group-name-input" (focusout)="editing=false" #groupNameInput>
         </div>
-        <div class="step-container" cdkDropList (cdkDropListDropped)="drop($event)">
-            <!-- <app-step-editor [step]="step" *ngFor="let step of group.arguments?.steps" cdkDrag></app-step-editor> -->
-            <div class="inner-step-container" *ngFor="let step of group.arguments?.steps" cdkDrag>
-                <div class="step-header">
-                    <img src="./assets/step.svg" class="step-icon" cdkDragHandle>
-                    <span class="step-label">Step:</span>
-                    <app-step-type-dropdown [(stepType)]="step.stepType"></app-step-type-dropdown>
-                    <section class="expander-section">
-                        <mat-icon fontIcon="arrow_drop_down" class="expander-icon" *ngIf="expanded[step.stepId]" (click)="expanded[step.stepId] = !expanded[step.stepId]"></mat-icon>
-                        <mat-icon fontIcon="arrow_drop_up" class="expander-icon" *ngIf="!expanded[step.stepId]" (click)="expanded[step.stepId] = !expanded[step.stepId]"></mat-icon>
-                    </section>
-                </div>
-                <div class="step-component-container" *ngIf="expanded[step.stepId]">
-                    <div *ngIf="step.stepType===StepType.Pipeline">TODO</div>
-                    <div *ngIf="step.stepType===StepType.Group">TODO</div>
-                    <div *ngIf="step.stepType===StepType.Merge">TODO</div>
-                    <div *ngIf="step.stepType===StepType.SqlPopulate">TODO</div>
-                    <app-sql-annotate-editor [step]="step" *ngIf="step.stepType===StepType.SqlAnnotate"></app-sql-annotate-editor>
-                    <app-condition-annotate-editor [step]="step" *ngIf="step.stepType===StepType.ConditionAnnotate"></app-condition-annotate-editor>
-                    <app-filter-editor [step]="step"  *ngIf="step.stepType===StepType.Filter"></app-filter-editor>
-                    <div *ngIf="step.stepType===StepType.Export">TODO</div>
-                </div>
-            </div>
+        <div class="step-container" >
+            <app-step-editor [step]="step" *ngFor="let step of group.arguments?.steps" [groupId]="group.stepId"></app-step-editor> 
         </div>
 
         <div class="add-new-step-container">
