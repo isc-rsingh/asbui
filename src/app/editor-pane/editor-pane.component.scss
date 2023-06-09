@@ -79,17 +79,29 @@
     border-radius: 4px 0 0 4px;
     padding:0;
     background-color:#f6f6f6;
+    img {
+        margin-left:3px;
+    }
 }
 .buttons-container .button-container:nth-child(3) {
     border-top: 1px solid #CBCBCB;
     border-bottom: 1px solid #CBCBCB;
     padding:0;
     background-color:#f6f6f6;
+    img {
+        height: 18px;
+        width: 18px;
+        margin-left:4px;
+        margin-top:1px;
+    }
 }
 .buttons-container .button-container:nth-child(4) {
     border: 1px solid #CBCBCB;
     border-radius: 0 4px 4px 0;
     padding:0;background-color:#f6f6f6;
+    img {
+        margin-left:3px;
+    }
 }
 
 .img-button {
