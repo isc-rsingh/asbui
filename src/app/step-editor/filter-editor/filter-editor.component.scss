@@ -1,4 +1,4 @@
-.condition-input {
+.condition-input,.lower-bound-input,.operator-input,.upper-bound-input {
     width:96%;
     border: 1px solid #CBCBCB;
     border-radius: 4px;
@@ -7,4 +7,8 @@
 .required {
     color:#CA0000;
     margin-left:4px;
+}
+
+.filter-range-section {
+    display: flex;
 }

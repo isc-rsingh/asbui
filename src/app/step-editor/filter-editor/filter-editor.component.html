@@ -1,6 +1,24 @@
 <div class="filter-editor-container">
-    <section>
+    <section *ngIf="!showHighLevel">
         <div>Condition:<span class="required">*</span></div>
         <div><input name="condition" type="text" [(ngModel)]="filterArgs.condition" class="condition-input"></div>
+    </section>
+    <section *ngIf="showHighLevel">
+        <div>Filter:<span class="required">*</span></div>
+        <div><input name="condition" type="text" [(ngModel)]="filterColumn" class="condition-input" (change)="reassembleExpression()"></div>
+        <div class="filter-range-section">
+            <div>
+                <label>Lower bound</label><span class="required">*</span>
+                <input name="lowerBound" type="number" [(ngModel)]="lowerBound" class="lower-bound-input" (change)="reassembleExpression()">
+            </div>
+            <div>
+                <label>Operator</label><span class="required">*</span>
+                <input name="operator" type="text" [(ngModel)]="operator" class="operator-input" (change)="reassembleExpression()">
+            </div>
+            <div>
+                <label>Upper bound</label><span class="required">*</span>
+                <input name="upperbound" type="number" [(ngModel)]="upperBound" class="upper-bound-input" (change)="reassembleExpression()">
+            </div>
+        </div>
     </section>
 </div>
