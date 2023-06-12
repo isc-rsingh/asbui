@@ -1,22 +1,40 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { StepObject, StepType } from '../types/model-file';
 import { DragHelperService, DragObjectType, DragSource } from '../services/drag-helper.service';
 import { StepService } from '../services/step.service';
+import { EditorContextService, SelectedCodeView} from '../services/editor-context.service';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-step-editor',
   templateUrl: './step-editor.component.html',
   styleUrls: ['./step-editor.component.scss']
 })
-export class StepEditorComponent {
+export class StepEditorComponent implements OnInit, OnDestroy {
   @Input() step:StepObject;
   @Input() groupId:number | undefined;
 
   editing:boolean=false;
+  selectedCodeView: SelectedCodeView
+  constructor(
+    private dragHelperService:DragHelperService, 
+    private stepService: StepService, 
+    private editorContextService:EditorContextService) {}
   
-  constructor(private dragHelperService:DragHelperService, private stepService: StepService) {}
+  ngOnInit(): void {
+    this.editorContextService.currentSelectedCodeView$.pipe(takeUntil(this.destroy$)).subscribe((view) => {
+      this.selectedCodeView = view;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
 
   public expanded:boolean=false;
+
+  private destroy$: Subject<void> = new Subject<void>();
 
   dragStart(evt:DragEvent) {
     this.dragHelperService.dragContext = {
@@ -72,5 +90,9 @@ export class StepEditorComponent {
 
   get StepType() {
     return StepType;
+  }
+
+  get SelectedCodeView() {
+    return SelectedCodeView;
   }
 }

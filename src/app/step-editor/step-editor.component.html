@@ -10,7 +10,7 @@
             <mat-icon fontIcon="arrow_drop_up" class="expander-icon" *ngIf="!expanded" (click)="expanded = !expanded"></mat-icon>
         </section>
     </div>
-    <div class="step-component-container" *ngIf="expanded">
+    <div class="step-component-container" *ngIf="expanded && selectedCodeView === SelectedCodeView.Diagram">
         <div *ngIf="step.stepType===StepType.Pipeline">TODO</div>
         <div *ngIf="step.stepType===StepType.Group">TODO</div>
         <div *ngIf="step.stepType===StepType.Merge">TODO</div>
@@ -19,6 +19,8 @@
         <app-condition-annotate-editor [step]="step" *ngIf="step.stepType===StepType.ConditionAnnotate"></app-condition-annotate-editor>
         <app-filter-editor [step]="step"  *ngIf="step.stepType===StepType.Filter"></app-filter-editor>
         <div *ngIf="step.stepType===StepType.Export">TODO</div>
-        
+    </div>
+    <div class="step-component-container" *ngIf="expanded && selectedCodeView === SelectedCodeView.Code">
+        <app-low-code-editor [step]="step"></app-low-code-editor>
     </div>
 </div>

@@ -33,6 +33,7 @@ import { SqlAnnotateEditorComponent } from './step-editor/sql-annotate-editor/sq
 import { StepTypeDropdownComponent } from './components/step-type-dropdown/step-type-dropdown.component';
 import { StepEnvironmentVariablesComponent } from './step-editor/step-environment-variables/step-environment-variables.component';
 import { EnviromentVariableEditorComponent } from './enviroment-variable-editor/enviroment-variable-editor.component';
+import { LowCodeEditorComponent } from './step-editor/low-code-editor/low-code-editor.component';
 
 const appearance: MatFormFieldDefaultOptions = {
   appearance: 'outline'
@@ -59,7 +60,8 @@ const appearance: MatFormFieldDefaultOptions = {
     SqlAnnotateEditorComponent,
     StepTypeDropdownComponent,
     StepEnvironmentVariablesComponent,
-    EnviromentVariableEditorComponent
+    EnviromentVariableEditorComponent,
+    LowCodeEditorComponent
   ],
   imports: [
     BrowserModule,
