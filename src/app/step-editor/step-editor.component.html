@@ -3,6 +3,8 @@
         <img src="./assets/step.svg" class="step-icon">
         <span class="step-label">Step:</span>
         <app-step-type-dropdown [(stepType)]="step.stepType"></app-step-type-dropdown>
+        <span class="step-description" *ngIf="!editing" (click)="editing=true">{{step.description}}</span>
+        <input class="step-description" *ngIf="editing" [(ngModel)]="step.description" (blur)="editing=false" (keyup.enter)="editing=false">
         <section class="expander-section">
             <mat-icon fontIcon="arrow_drop_down" class="expander-icon" *ngIf="expanded" (click)="expanded = !expanded"></mat-icon>
             <mat-icon fontIcon="arrow_drop_up" class="expander-icon" *ngIf="!expanded" (click)="expanded = !expanded"></mat-icon>

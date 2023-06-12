@@ -12,6 +12,8 @@ export class StepEditorComponent {
   @Input() step:StepObject;
   @Input() groupId:number | undefined;
 
+  editing:boolean=false;
+  
   constructor(private dragHelperService:DragHelperService, private stepService: StepService) {}
 
   public expanded:boolean=false;

@@ -6,7 +6,7 @@
 
 .step-header {
     display: grid;
-    grid-template-columns: 1fr 1fr 4fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 4fr 1fr;
     background: #F6F6F6;
 
     height:39px;
@@ -28,6 +28,25 @@
     color: #3C3C3D;
     margin-left:9px;
     margin-right:2px;
+}
+
+.step-description {
+    padding-left:10px;
+    margin-top:2px;
+}
+
+input.step-description {
+    width:100%;
+    background: #FFFFFF;
+    border: 1px solid #CBCBCB;
+    border-radius: 4px;
+    height:26px;
+    font-family: "Noto Sans";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+    margin-top:1px;
 }
 
 .expander-section {
