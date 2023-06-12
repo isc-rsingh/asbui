@@ -1,0 +1,8 @@
+<div class="enviroment-variable-editor-container">
+    <div class="enviroment-variable-label">
+        <label>{{key}}</label>
+    </div>
+    <div class="enviroment-variable-value" *ngIf="isValueVariable">
+        <input [type]="inputType" name="environment-variable-input" [(ngModel)]="enviromentValue_val.value" class="step-environment-variable-value-input">
+    </div>
+</div>

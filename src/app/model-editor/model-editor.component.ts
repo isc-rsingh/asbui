@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 import { GroupObject, ObjectFile, OperationObject, PipelineObject, StepType } from '../types/model-file';
-import { EditorContextService } from '../services/editor-context.service';
+import { EditorContextService, SelectedCodeView } from '../services/editor-context.service';
 import { Subject, takeUntil } from 'rxjs';
 import { StepService } from '../services/step.service';
 
@@ -15,6 +15,7 @@ export class ModelEditorComponent implements OnInit, OnDestroy {
   public steps:OperationObject[]=[];
   public lastStepId:number;
   public currentStepId: number | null;
+  public selectedCodeView:SelectedCodeView = SelectedCodeView.Diagram;
 
   get currentDocument():ObjectFile {
     return this._currentDocument;
@@ -31,6 +32,10 @@ export class ModelEditorComponent implements OnInit, OnDestroy {
     this.editorContextService.currentFocusedStepId$.pipe(takeUntil(this.destroy$)).subscribe((step) => {
       this.currentStepId = step;
       this.filterGroupsForContext();
+    });
+
+    this.editorContextService.currentSelectedCodeView$.pipe(takeUntil(this.destroy$)).subscribe((view) => {
+      this.selectedCodeView = view;
     });
   }
 
@@ -70,5 +75,9 @@ export class ModelEditorComponent implements OnInit, OnDestroy {
   
   get StepType() {
     return StepType;
+  }
+
+  get SelectedCodeView() {
+    return SelectedCodeView;
   }
 }

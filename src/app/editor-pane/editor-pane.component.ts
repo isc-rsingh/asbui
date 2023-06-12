@@ -1,15 +1,9 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ObjectFile, StepType } from '../types/model-file';
 import { BreadcrumbIconType } from './breadcrumb/breadcrumb.component';
-import { EditorContextService } from '../services/editor-context.service';
+import { EditorContextService, SelectedCodeView } from '../services/editor-context.service';
 import { Subject, takeUntil } from 'rxjs';
 import { StepService } from '../services/step.service';
-
-export enum SelectedCodeView {
-  LowCode=0,
-  Diagram=1,
-  Code=2
-}
 
 export interface BreadcrumbData {
   name:string,
@@ -25,7 +19,7 @@ export interface BreadcrumbData {
 })
 export class EditorPaneComponent implements OnInit, OnDestroy{
   
-  currentView:SelectedCodeView = SelectedCodeView.LowCode;
+  currentView:SelectedCodeView = SelectedCodeView.Diagram;
   breadcrumbs:BreadcrumbData[]=[];
 
   filter:string="";
@@ -72,6 +66,10 @@ export class EditorPaneComponent implements OnInit, OnDestroy{
         this.breadcrumbs[this.breadcrumbs.length-1].isLast = true;
       }
     });
+
+    this.editorContextService.currentSelectedCodeView$.pipe(takeUntil(this.destroy$)).subscribe((view) => { 
+      this.currentView = view;
+    });
   }
   
   ngOnDestroy(): void {
@@ -81,7 +79,7 @@ export class EditorPaneComponent implements OnInit, OnDestroy{
 
   
   public changeView(view:SelectedCodeView) {
-    this.currentView = view;
+    this.editorContextService.setCurrentSelectedCodeView$(view);
   }
 
 

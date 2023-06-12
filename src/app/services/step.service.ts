@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ConditionAnnotateArgs, ExportArgs, FilterArgs, GroupArgs, GroupObject, MergeArgs, ObjectFile, OperationObject, PipelineObject, SqlAnnotateArgs, SqlPopulateArgs, StepObject, StepType } from '../types/model-file';
+import { ConditionAnnotateArgs, EnvListValueSet, EnvSQLValueSet, EnvValue, ExportArgs, FilterArgs, GroupArgs, GroupObject, MergeArgs, ObjectFile, OperationObject, PipelineObject, SQLField, SqlAnnotateArgs, SqlPopulateArgs, StepObject, StepType } from '../types/model-file';
 import { CurrentStateService } from './current-state.service';
 import { EditorContextService } from './editor-context.service';
 import { Observable, of } from 'rxjs';
@@ -167,6 +167,90 @@ export class StepService {
       return;
     }
     groupStep.arguments?.steps.splice(idxToInsert,0,stepToCopy);
+  }
+
+  public getEnviromentVariablesForStep(stepId:number, currentResult: {[key:string] : EnvValue | EnvSQLValueSet | EnvListValueSet}): {[key:string] : EnvValue | EnvSQLValueSet | EnvListValueSet} {
+
+    const step = this.GetStep(this.currentState.currentDocument,stepId);
+    if (!step) {return {};}
+
+    let rslt:any = {...currentResult};
+
+    switch (step.stepType) { 
+      case StepType.SqlAnnotate: {
+        const annotateArgs = step.arguments as SqlAnnotateArgs;
+        if (annotateArgs.where && annotateArgs.where.parameters) {
+          annotateArgs.where.parameters.forEach((p:string)=> {
+            rslt[p] = rslt[p] || this.currentState.currentDocument.environment[p];
+          });
+        }
+
+        if (annotateArgs.annotationProperties ) {
+          annotateArgs.annotationProperties.forEach((f:SQLField)=> {
+            if (f.parameters) {
+              f.parameters.forEach((p:string)=> {
+                rslt[p] = rslt[p] || this.currentState.currentDocument.environment[p];
+              });
+            }
+          });
+        }
+        break;
+      }
+      case StepType.ConditionAnnotate: {
+        const annotateArgs = step.arguments as ConditionAnnotateArgs;
+        if (annotateArgs.localEnvironment) {
+          //TODO: Make sure this is a valid cast in other model files
+          const s = annotateArgs.localEnvironment as string;
+          if (typeof s === 'string') {
+            rslt[s] = rslt[s] || this.currentState.currentDocument.environment[s];
+          }
+        }
+        break;
+      }
+      case StepType.Export: {
+        break;
+      }
+      case StepType.Filter: {
+        const filterArgs = step.arguments as FilterArgs;
+        //TODO: Add logic for condition map
+        break;
+      }
+      case StepType.Group: {
+        const groupArgs = step.arguments as GroupArgs;
+        groupArgs.steps.forEach(s=> {
+          rslt = {...rslt, ...this.getEnviromentVariablesForStep(s.stepId, rslt)};
+        });
+        break;
+      }
+      case StepType.Merge: {
+        //TODO: Are there any parameters?  Fold parameters for both pipelines into result?
+        break;
+      }
+      case StepType.Pipeline: {
+        //TODO: Will this ever be needed
+        break;
+      }
+      case StepType.SqlPopulate: {
+        var sqlPopulateArgs = step.arguments as SqlPopulateArgs;
+        if (sqlPopulateArgs.where && sqlPopulateArgs.where.parameters) {
+          sqlPopulateArgs.where.parameters.forEach((p:string)=> {
+            rslt[p] = rslt[p] || this.currentState.currentDocument.environment[p];
+          });
+        }
+
+        if (sqlPopulateArgs.annotationProperties ) {
+          sqlPopulateArgs.annotationProperties.forEach((f:SQLField)=> {
+            if (f.parameters) {
+              f.parameters.forEach((p:string)=> {
+                rslt[p] = rslt[p] || this.currentState.currentDocument.environment[p];
+              });
+            }
+          });
+        }
+        break;
+      }
+    }
+    return rslt;
   }
 
   private highestStepId(steps:OperationObject[], currentMax:number): number {

@@ -57,7 +57,7 @@ export interface ConditionAnnotateArgs extends ConditionSpec {
 }
 export interface ConditionSpec {
   condition: string;
-  localEnvironment: ConditionMap;
+  localEnvironment: ConditionMap | string;
 }
 
 export interface ConditionMap {

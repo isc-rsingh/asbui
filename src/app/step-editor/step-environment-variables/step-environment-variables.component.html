@@ -1,0 +1,8 @@
+<div class="step-environment-variables-container">
+    <div class="step-environment-variable" *ngFor="let env of environmentVariables | keyvalue">
+        <app-enviroment-variable-editor [key]="env.key"></app-enviroment-variable-editor>
+    </div>
+    <div class="no-environment-variables" *ngIf="noEnvironmentVariables">
+        No variables defined in this step.
+    </div>
+</div>

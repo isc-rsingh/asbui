@@ -4,11 +4,13 @@
             <span *ngIf="!editing" (click)="showDescriptionInput()" class="group-name-label">{{group.description}}</span>
             <input *ngIf="editing" type="text" name="group-name" [(ngModel)]="group.description" class="group-name-input" (focusout)="editing=false" #groupNameInput>
         </div>
-        <div class="step-container" >
+        <div class="step-container" *ngIf="currentView !== SelectedCodeView.LowCode">
             <app-step-editor [step]="step" *ngFor="let step of group.arguments?.steps" [groupId]="group.stepId"></app-step-editor> 
         </div>
-
-        <div class="add-new-step-container">
+        <div class="step-container" *ngIf="currentView === SelectedCodeView.LowCode">
+            <app-step-environment-variables [step]="group"></app-step-environment-variables>
+        </div>
+        <div class="add-new-step-container" *ngIf="currentView !== SelectedCodeView.LowCode">
             <mat-icon fontIcon="add_circle_outline" class="add-icon" (click)="addNewStep()"></mat-icon>
             <span class="add-text">Add:</span>
             <app-step-type-dropdown placeholder="Click to add a new step" [(stepType)]="newStepType"></app-step-type-dropdown>

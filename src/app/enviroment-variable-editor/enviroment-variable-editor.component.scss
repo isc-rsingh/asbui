@@ -1,0 +1,21 @@
+.enviroment-variable-editor-container {
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    width:100%;
+    margin-bottom:10px;
+}
+
+.enviroment-variable-label {
+
+}
+
+.enviroment-variable-value {
+
+}
+
+.environment-variable-input {
+    width: 96%;
+    border: 1px solid #CBCBCB;
+    border-radius: 4px;
+    height: 36px;
+}
