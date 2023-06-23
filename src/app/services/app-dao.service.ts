@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable,map } from 'rxjs';
 import { ObjectFile } from '../types/model-file';
 
 @Injectable({
@@ -21,7 +21,7 @@ export class AppDaoService {
   }
 
   public getModel(modelName:string):Observable<ObjectFile> {
-    return this.httpClient.get<ObjectFile>(this.baseUri + '$model/' + modelName)
+    return this.httpClient.get<ObjectFile>(this.baseUri + '$model/' + modelName).pipe(map((resp:any)=>{return resp.program as ObjectFile}));
   };
 
 }
