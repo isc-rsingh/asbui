@@ -11,11 +11,11 @@
         
         <div class="buttons-container">
             <img src="./assets/play.svg" class="play-button">
-            <div class="button-container" [ngClass]="{'selected':currentView===SelectedCodeView.LowCode}">
-                <img src="./assets/lowcodeview.svg" class="img-button" (click)="changeView(SelectedCodeView.LowCode)">
+            <div class="button-container" [ngClass]="{'selected':currentView===SelectedCodeView.Block}">
+                <img src="./assets/lowcodeview.svg" class="img-button" (click)="changeView(SelectedCodeView.Block)">
             </div>
-            <div class="button-container" [ngClass]="{'selected':currentView===SelectedCodeView.Diagram}">
-                <img src="./assets/pipeline.svg" class="img-button" (click)="changeView(SelectedCodeView.Diagram)">
+            <div class="button-container" [ngClass]="{'selected':currentView===SelectedCodeView.Step}">
+                <img src="./assets/pipeline.svg" class="img-button" (click)="changeView(SelectedCodeView.Step)">
             </div>
             <div class="button-container" [ngClass]="{'selected':currentView===SelectedCodeView.Code}">
                 <img src="./assets/codeview.svg" class="img-button" (click)="changeView(SelectedCodeView.Code)">

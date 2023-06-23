@@ -15,7 +15,7 @@ export class ModelEditorComponent implements OnInit, OnDestroy {
   public steps:OperationObject[]=[];
   public lastStepId:number;
   public currentStepId: number | null;
-  public selectedCodeView:SelectedCodeView = SelectedCodeView.Diagram;
+  public selectedCodeView:SelectedCodeView = SelectedCodeView.Step;
 
   get currentDocument():ObjectFile {
     return this._currentDocument;

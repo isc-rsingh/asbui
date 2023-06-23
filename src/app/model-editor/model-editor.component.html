@@ -1,7 +1,7 @@
 <div class="model-editor-container">
     <div class="model-item" *ngFor="let step of steps">
         <app-group-editor *ngIf="step.stepType===StepType.Group" [step]="step" [isLastGroup]="step.stepId === lastStepId"></app-group-editor>
-        <div class="standalone-step-container" *ngIf="step.stepType !== StepType.Group && selectedCodeView !== SelectedCodeView.LowCode">
+        <div class="standalone-step-container" *ngIf="step.stepType !== StepType.Group && selectedCodeView !== SelectedCodeView.Block">
             <app-step-editor [step]="step"></app-step-editor>
             <div class="group-next-arrow">
                 <img src="./assets/arrow.svg">

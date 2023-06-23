@@ -19,7 +19,7 @@ export interface BreadcrumbData {
 })
 export class EditorPaneComponent implements OnInit, OnDestroy{
   
-  currentView:SelectedCodeView = SelectedCodeView.Diagram;
+  currentView:SelectedCodeView = SelectedCodeView.Step;
   breadcrumbs:BreadcrumbData[]=[];
 
   filter:string="";

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 export enum SelectedCodeView {
-  LowCode=0,
-  Diagram=1,
+  Block=0,
+  Step=1,
   Code=2
 }
 
@@ -15,7 +15,7 @@ export class EditorContextService {
   constructor() { }
   
   private _currentFocusedStepId = new BehaviorSubject<number | null>(null);
-  private _currentSelectedCodeView = new BehaviorSubject<SelectedCodeView>(SelectedCodeView.Diagram);
+  private _currentSelectedCodeView = new BehaviorSubject<SelectedCodeView>(SelectedCodeView.Step);
 
   get currentFocusedStepId(): number | null {
     return this._currentFocusedStepId.value;
