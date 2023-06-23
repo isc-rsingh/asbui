@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TemplateFile } from '../types/template';
 import { TemplateServiceService } from '../services/template-service.service';
-import { lastValueFrom} from 'rxjs';
+import { firstValueFrom, lastValueFrom} from 'rxjs';
+import { CurrentStateService } from '../services/current-state.service';
 
 @Component({
   selector: 'app-templates-outline',
@@ -20,7 +21,7 @@ export class TemplatesOutlineComponent implements OnInit {
   public filteredSystemTemplates: TemplateFile[];
   public filteredUserTemplates: TemplateFile[];
 
-  constructor(public templateService:TemplateServiceService) {}
+  constructor(private templateService:TemplateServiceService, private currentStateService:CurrentStateService) {}
 
   async ngOnInit() {
     this.systemTemplates = await lastValueFrom(this.templateService.GetSystemTemplates());
@@ -32,5 +33,10 @@ export class TemplatesOutlineComponent implements OnInit {
   public filterResults(): void {
     this.filteredSystemTemplates = this.systemTemplates.filter(x=>!this.filter || x.name.includes(this.filter));
     this.filteredUserTemplates = this.userTemplates.filter(x=>!this.filter || x.name.includes(this.filter));
+  }
+
+  public async openTemplate(template:TemplateFile) {
+    const model = await firstValueFrom(this.templateService.GetModel(template));
+    this.currentStateService.setCurrentDocument(model);
   }
 }

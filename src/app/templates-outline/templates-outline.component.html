@@ -69,7 +69,7 @@
         </div>
 
         <div *ngIf="userExpanded">
-            <div *ngFor="let inp of filteredUserTemplates" class="template-section">
+            <div *ngFor="let inp of filteredUserTemplates" class="template-section" (click)="openTemplate(inp)">
                 <img src="./assets/template.svg">
                 <span class="template-name">{{inp.name}}</span> 
             </div>

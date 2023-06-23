@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, HTTP_INTERCEPTORS  } from "@angular/common/http";
 import { FormsModule } from '@angular/forms';
 
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
@@ -34,6 +35,7 @@ import { StepTypeDropdownComponent } from './components/step-type-dropdown/step-
 import { StepEnvironmentVariablesComponent } from './step-editor/step-environment-variables/step-environment-variables.component';
 import { EnviromentVariableEditorComponent } from './enviroment-variable-editor/enviroment-variable-editor.component';
 import { LowCodeEditorComponent } from './step-editor/low-code-editor/low-code-editor.component';
+import { HttpInterceptorService } from './services/http-interceptor.service';
 
 const appearance: MatFormFieldDefaultOptions = {
   appearance: 'outline'
@@ -67,6 +69,7 @@ const appearance: MatFormFieldDefaultOptions = {
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    HttpClientModule,
     MatButtonToggleModule,
     MatExpansionModule,
     MatIconModule,
@@ -79,6 +82,11 @@ const appearance: MatFormFieldDefaultOptions = {
     {
       provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
       useValue: appearance
+    },
+    { 
+      provide: HTTP_INTERCEPTORS,
+       useClass: HttpInterceptorService, 
+       multi: true 
     }
   ],
   bootstrap: [AppComponent]

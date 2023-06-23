@@ -1,19 +1,28 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, map } from 'rxjs';
 import { TemplateFile } from '../types/template';
+import { AppDaoService } from './app-dao.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TemplateServiceService {
 
-  constructor() { }
+  constructor(private appDaoService:AppDaoService) { }
 
   public GetSystemTemplates(): Observable<TemplateFile[]> {
     return of([{name:"HB1aC TestModel"}]);
   }
 
   public GetUserTemplates(): Observable<TemplateFile[]> {
-    return of([{name:"Hospital Intake"}]);
+
+    return this.appDaoService.getModels().pipe(map((models:any) => {
+      const rslt = models.models.map((model:any) => {return {name: model.name}});
+      return rslt;
+    }));
+  }
+
+  public GetModel(modelFile:TemplateFile) {
+    return this.appDaoService.getModel(modelFile.name);
   }
 }
