@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { ConditionAnnotateArgs, EnvListValueSet, EnvSQLValueSet, EnvValue, ExportArgs, FilterArgs, GroupArgs, GroupObject, MergeArgs, ObjectFile, OperationObject, PipelineObject, SQLField, SqlAnnotateArgs, SqlPopulateArgs, StepObject, StepType } from '../types/model-file';
 import { CurrentStateService } from './current-state.service';
 import { EditorContextService } from './editor-context.service';
-import { Observable, of } from 'rxjs';
+import { Observable, firstValueFrom, of } from 'rxjs';
 import { group } from '@angular/animations';
+import { TemplateServiceService } from './template-service.service';
 
 
 export interface StepMetadata {
@@ -18,7 +19,10 @@ export interface StepMetadata {
 })
 export class StepService {
 
-  constructor(private currentState:CurrentStateService,private editorContext: EditorContextService) { }
+  constructor(
+    private currentState:CurrentStateService,
+    private editorContext: EditorContextService,
+    private templateService:TemplateServiceService) { }
 
    public GetPathToStepId(file:ObjectFile, stepId:number):number[]|null {
     
@@ -100,6 +104,38 @@ export class StepService {
           if (r) {return r;}
         }
       }
+      return null;
+    }
+
+    for (let i=0;i<file.pipelines.length;i++) {
+      const rslt = recurseSteps(file.pipelines[i]);
+      if (rslt) {return rslt;}
+    }
+
+    return null;
+  }
+
+  public GetParentStep(file: ObjectFile, childStepId: number) : OperationObject | null {
+
+    const recurseSteps = (operation:OperationObject):OperationObject | null => {
+      
+      if (this.stepHasChildStep(operation,childStepId)) {
+        let operations:OperationObject[] = [];
+        if (operation.stepType === StepType.Pipeline) {
+           operations = (operation as PipelineObject).steps;
+        }
+        if (operation.stepType === StepType.Group) {
+          operations = (operation as GroupObject).arguments?.steps || [];
+        }
+        for (let i=0;i<operations.length;i++) {
+          if (operations[i].stepId === childStepId) {
+            return operation;
+          }
+          const r = recurseSteps(operations[i])  ;
+          if (r) {return r;}
+        }
+      }
+
       return null;
     }
 
@@ -212,7 +248,11 @@ export class StepService {
       }
       case StepType.Filter: {
         const filterArgs = step.arguments as FilterArgs;
-        //TODO: Add logic for condition map
+        if (filterArgs.localEnvironment) {
+          Object.keys(filterArgs.localEnvironment).forEach((k:string)=> {
+            rslt[k] = rslt[k] || this.currentState.currentDocument.environment[k];
+          });
+        }
         break;
       }
       case StepType.Group: {
@@ -251,6 +291,62 @@ export class StepService {
       }
     }
     return rslt;
+  }
+
+  
+  public async AddBlockTemplateBeforeGroup(blockTemplateName:string, groupIdx:number) {
+    const parentStep = this.GetParentStep(this.currentState.currentDocument, groupIdx) as GroupObject;
+    if (parentStep){
+      const template = await firstValueFrom(this.templateService.GetBlockTemplate(blockTemplateName));
+      if (!template) return;
+      let nextStepId = this.highestStepInPipeline(this.currentState.currentDocument) + 1;
+      const newGroup = {
+        name:blockTemplateName,
+        description:blockTemplateName,
+        stepId:nextStepId,
+        stepType:StepType.Group,
+        disabled:false,
+        arguments: {
+          steps:template.steps.map((s:OperationObject) => {
+            return {
+              ...s,
+              stepId:(++nextStepId),
+            }
+          })
+        }
+      };
+      let stepArray:OperationObject[] = [];
+      switch (parentStep.stepType) {
+        case StepType.Pipeline: {
+          stepArray = (parentStep as PipelineObject).steps;
+          break;
+        }
+        case StepType.Group: {
+          stepArray = (parentStep as GroupObject).arguments?.steps || [];
+          break;
+        }
+        default:
+          return;
+      }
+      const siblingIdx = stepArray.findIndex(x=>x.stepId === groupIdx);
+      if (siblingIdx < 0) return;
+
+      stepArray.splice(siblingIdx,0,newGroup);
+
+      Object.keys(template.environment).forEach(k=> {
+        if (!this.currentState.currentDocument.environment[k]) {
+          this.currentState.currentDocument.environment[k] = template.environment[k];
+        }
+      });
+    }
+  }
+
+  private highestStepInPipeline(pipeline:ObjectFile ) {
+    let maxStepId = 0;
+    pipeline.pipelines.forEach(p=>{
+      maxStepId = this.highestStepId(p.steps,maxStepId);
+    });
+    return maxStepId;
   }
 
   private highestStepId(steps:OperationObject[], currentMax:number): number {

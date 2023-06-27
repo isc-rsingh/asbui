@@ -3,17 +3,19 @@ import { Injectable } from '@angular/core';
 export enum DragSource {
   GroupEditor,
   ModelEditor,
-  ModelOutline
+  ModelOutline,
+  TemplateOutline,
 }
 
 export enum DragObjectType {
-  Step
+  Step,
+  BlockTemplate,
 }
 
 export interface DragContext {
   dragSource:DragSource;
   dragObjectType: DragObjectType;
-  id:number;
+  id:number | string;
   parentId?:number;
 }
 
@@ -34,8 +36,11 @@ export class DragHelperService {
     this._dragContext = dragContext;
   }
 
-
   public isStep():boolean {
     return this._dragContext?.dragObjectType === DragObjectType.Step;
+  }
+
+  public isBlockTemplate():boolean {
+    return this._dragContext?.dragObjectType === DragObjectType.BlockTemplate;
   }
 }

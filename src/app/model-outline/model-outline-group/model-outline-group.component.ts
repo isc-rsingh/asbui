@@ -88,6 +88,16 @@ export class DatasetsOutlineGroupComponent {
       evt.preventDefault();
       return false;
     }
+
+    if (this.dragHelperService.isBlockTemplate()) {
+      const dataTransfer = evt.dataTransfer;
+      if (dataTransfer==null) {
+        return true;
+      }
+      dataTransfer.dropEffect = 'copy';
+      evt.preventDefault();
+      return false;
+    }
   }
 
   drop(evt:DragEvent, step:OperationObject) {
@@ -95,13 +105,14 @@ export class DatasetsOutlineGroupComponent {
       if (!ctx) {
         return;
       }
+      if (this.dragHelperService.isStep()) {  
+        if (ctx.parentId === this.parentId) {
+          this.stepService.moveStepWithinGroup(+ctx.id,step.stepId,this.parentId);
+        }
 
-      if (ctx.parentId === this.parentId) {
-        this.stepService.moveStepWithinGroup(ctx.id,step.stepId,this.parentId);
-      }
-
-      if (ctx.parentId !== this.parentId && this.parentId && ctx.parentId) {
-        this.stepService.moveStepToADifferentGroup(ctx.id, step.stepId, this.parentId, ctx.parentId);
+        if (ctx.parentId !== this.parentId && this.parentId && ctx.parentId) {
+          this.stepService.moveStepToADifferentGroup(+ctx.id, step.stepId, this.parentId, ctx.parentId);
+        }
       }
   }
 }

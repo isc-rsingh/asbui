@@ -70,20 +70,22 @@ export class StepEditorComponent implements OnInit, OnDestroy {
       return;
     }
 
-    if (ctx.id === this.step.stepId) {
-      return;
-    }
+    if (this.dragHelperService.isStep()) {  
+      if (ctx.id === this.step.stepId) {
+        return;
+      }
 
-    if (ctx.dragSource === DragSource.GroupEditor && ctx.parentId === this.groupId && this.groupId) {
-      this.stepService.moveStepWithinGroup(ctx.id, this.step.stepId, this.groupId);
-    }
+      if (ctx.dragSource === DragSource.GroupEditor && ctx.parentId === this.groupId && this.groupId) {
+        this.stepService.moveStepWithinGroup(+ctx.id, this.step.stepId, this.groupId);
+      }
 
-    if (ctx.dragSource === DragSource.GroupEditor && ctx.parentId !== this.groupId && this.groupId && ctx.parentId) {
-      this.stepService.moveStepToADifferentGroup(ctx.id, this.step.stepId, this.groupId, ctx.parentId);
-    }
+      if (ctx.dragSource === DragSource.GroupEditor && ctx.parentId !== this.groupId && this.groupId && ctx.parentId) {
+        this.stepService.moveStepToADifferentGroup(+ctx.id, this.step.stepId, this.groupId, ctx.parentId);
+      }
 
-    if (ctx.dragSource === DragSource.ModelOutline && this.groupId) {
-      this.stepService.copyStepToGroup(ctx.id,this.groupId,this.step.stepId);
+      if (ctx.dragSource === DragSource.ModelOutline && this.groupId) {
+        this.stepService.copyStepToGroup(+ctx.id,this.groupId,this.step.stepId);
+      }
     }
   }
 

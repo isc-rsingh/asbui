@@ -74,6 +74,19 @@
                 <span class="template-name">{{inp.name}}</span> 
             </div>
         </div>
+
+        <div class="subsection-expander-header">
+            <mat-icon fontIcon="arrow_drop_down" class="subsection-expander-icon" *ngIf="userExpanded" (click)="userExpanded = !userExpanded"></mat-icon>
+            <mat-icon fontIcon="arrow_drop_up" class="subsection-expander-icon" *ngIf="!userExpanded" (click)="userExpanded = !userExpanded"></mat-icon>
+            <span class="subsection-expander-title">Block Templates</span>
+        </div>
+
+        <div *ngIf="blockExpanded">
+            <div *ngFor="let inp of filteredBlockTemplates" class="template-section" draggable="true" (dragstart)="dragStart($event, inp)">
+                <img src="./assets/template.svg">
+                <span class="template-name">{{inp.blockName}}</span> 
+            </div>
+        </div>
     </section>  
     
 </section>  
