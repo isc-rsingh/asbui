@@ -1,0 +1,18 @@
+<div class="column-spec-container">
+    <div class="name-input-container">
+        <mat-icon fontIcon="abc" *ngIf="sqlField.dataType === 'string'"></mat-icon>
+        <mat-icon fontIcon="123" *ngIf="sqlField.dataType === 'int'"></mat-icon>
+        <mat-icon fontIcon="toggle_on" *ngIf="sqlField.dataType === 'bit'"></mat-icon>
+        <mat-icon fontIcon="123" *ngIf="sqlField.dataType === 'number'"></mat-icon>
+        <input type="text" name="columnName" [(ngModel)]="sqlField.annotationPropertyName" class="text-input name-input">
+    </div>
+    <mat-select [(value)]="sqlField.dataType" class="sqltype-select">
+        <mat-option value="string"><mat-icon fontIcon="abc"></mat-icon>String</mat-option>
+        <mat-option value="int"><mat-icon fontIcon="123"></mat-icon>Integer</mat-option>
+        <mat-option value="bit"><mat-icon fontIcon="toggle_on"></mat-icon>Boolean</mat-option>
+        <mat-option value="number"><mat-icon fontIcon="123"></mat-icon>Decimal</mat-option>
+    </mat-select>
+    <img src="assets/sidearrow.svg" class="side-arrow">
+    <input type="text" name="columnPath" [(ngModel)]="sqlField.selectExpression" class="text-input">
+    <img src="assets/remove.svg" (click)="remove()" class="remove-icon">
+</div>

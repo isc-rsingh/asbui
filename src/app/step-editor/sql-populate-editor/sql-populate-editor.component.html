@@ -1,0 +1,23 @@
+<div class="sql-populate-editor">
+    <section class="input-section">
+        <div>Annotation Name:<span class="required">*</span></div>
+        <div><input name="annotation-name" type="text" [(ngModel)]="sqlPopulateArgs.annotationName" class="table-name-input"></div>
+    </section>
+    <section class="input-section">
+        <div>Table Name:<span class="required">*</span></div>
+        <div><input name="table-name" type="text" [(ngModel)]="sqlPopulateArgs.tableName" class="table-name-input"></div>
+    </section>
+    <section class="input-section">
+        <div>Grouping field:<span class="required">*</span></div>
+        <div><input name="grouping-field" type="text" [(ngModel)]="sqlPopulateArgs.groupingField" class="grouping-field-input"></div>
+    </section>
+    <section class="input-section">
+        <div>Where clause:</div>
+        <div><input name="where-clause" type="text" [(ngModel)]="where" class="where-clause-input"></div>
+    </section>
+    <section class="annotations-section">
+        <div>Annotations:</div>
+        <app-sql-field-editor [sqlField]="sqlField" *ngFor="let sqlField of sqlPopulateArgs.annotationProperties; let i = index" (remove)="removeSqlField(sqlField)"></app-sql-field-editor>
+        <button class="add-button" (click)="this.addnew()">Add column</button>
+    </section>
+</div>

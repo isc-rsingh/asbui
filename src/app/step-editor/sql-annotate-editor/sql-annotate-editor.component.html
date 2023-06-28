@@ -11,4 +11,9 @@
         <div>Grouping Field:<span class="required">*</span></div>
         <div><input name="table" type="text" [(ngModel)]="sqlAnnotateArgs.groupingField" class="grouping-field-input"></div>
     </section>
+    <section class="annotations-section">
+        <div>Annotations:</div>
+        <app-sql-field-editor [sqlField]="sqlField" *ngFor="let sqlField of sqlAnnotateArgs.annotationProperties; let i = index" (remove)="removeSqlField(sqlField)"></app-sql-field-editor>
+        <button class="add-button" (click)="this.addnew()">Add column</button>
+    </section>
 </div>

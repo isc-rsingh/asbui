@@ -38,6 +38,8 @@ import { LowCodeEditorComponent } from './step-editor/low-code-editor/low-code-e
 import { HttpInterceptorService } from './services/http-interceptor.service';
 import { ExportEditorComponent } from './step-editor/export-editor/export-editor.component';
 import { ColumnSpecEditorComponent } from './step-editor/export-editor/column-spec-editor/column-spec-editor.component';
+import { SqlPopulateEditorComponent } from './step-editor/sql-populate-editor/sql-populate-editor.component';
+import { SqlFieldEditorComponent } from './components/sql-field-editor/sql-field-editor.component';
 
 const appearance: MatFormFieldDefaultOptions = {
   appearance: 'outline'
@@ -67,7 +69,9 @@ const appearance: MatFormFieldDefaultOptions = {
     EnviromentVariableEditorComponent,
     LowCodeEditorComponent,
     ExportEditorComponent,
-    ColumnSpecEditorComponent
+    ColumnSpecEditorComponent,
+    SqlPopulateEditorComponent,
+    SqlFieldEditorComponent
   ],
   imports: [
     BrowserModule,

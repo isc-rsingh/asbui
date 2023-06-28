@@ -14,7 +14,7 @@
         <div *ngIf="step.stepType===StepType.Pipeline">TODO</div>
         <div *ngIf="step.stepType===StepType.Group">TODO</div>
         <div *ngIf="step.stepType===StepType.Merge">TODO</div>
-        <div *ngIf="step.stepType===StepType.SqlPopulate">TODO</div>
+        <app-sql-populate-editor [step]="step" *ngIf="step.stepType === StepType.SqlPopulate"></app-sql-populate-editor>
         <app-sql-annotate-editor [step]="step" *ngIf="step.stepType===StepType.SqlAnnotate"></app-sql-annotate-editor>
         <app-condition-annotate-editor [step]="step" *ngIf="step.stepType===StepType.ConditionAnnotate"></app-condition-annotate-editor>
         <app-filter-editor [step]="step"  *ngIf="step.stepType===StepType.Filter"></app-filter-editor>

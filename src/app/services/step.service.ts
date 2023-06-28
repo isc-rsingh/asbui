@@ -400,7 +400,9 @@ export class StepService {
       case StepType.SqlAnnotate: 
         return {} as SqlAnnotateArgs;
       case StepType.SqlPopulate:
-        return {} as SqlPopulateArgs;
+        return {
+          where:{}
+        } as SqlPopulateArgs;
     }
   }
 }
