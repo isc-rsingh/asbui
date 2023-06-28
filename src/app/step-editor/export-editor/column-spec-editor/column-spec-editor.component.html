@@ -1,0 +1,18 @@
+<div class="column-spec-container">
+    <div class="name-input-container">
+        <mat-icon fontIcon="abc" *ngIf="columnSpec.sqlType === ESqlDataType.string"></mat-icon>
+        <mat-icon fontIcon="123" *ngIf="columnSpec.sqlType === ESqlDataType.integer"></mat-icon>
+        <mat-icon fontIcon="toggle_on" *ngIf="columnSpec.sqlType === ESqlDataType.boolean"></mat-icon>
+        <mat-icon fontIcon="123" *ngIf="columnSpec.sqlType === ESqlDataType.decimal"></mat-icon>
+        <input type="text" name="columnName" [(ngModel)]="columnSpec.columnName" class="text-input name-input">
+    </div>
+    <mat-select [(value)]="columnSpec.sqlType" class="sqltype-select">
+        <mat-option value="VARCHAR(4000)"><mat-icon fontIcon="abc"></mat-icon>String</mat-option>
+        <mat-option value="INT"><mat-icon fontIcon="123"></mat-icon>Integer</mat-option>
+        <mat-option value="BIT"><mat-icon fontIcon="toggle_on"></mat-icon>Boolean</mat-option>
+        <mat-option value="DECIMAL"><mat-icon fontIcon="123"></mat-icon>Decimal</mat-option>
+    </mat-select>
+    <img src="assets/sidearrow.svg" class="side-arrow">
+    <input type="text" name="columnPath" [(ngModel)]="columnSpec.pathExpression" class="text-input">
+    <img src="assets/remove.svg" (click)="remove()" class="remove-icon">
+</div>

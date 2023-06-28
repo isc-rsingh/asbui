@@ -18,7 +18,7 @@
         <app-sql-annotate-editor [step]="step" *ngIf="step.stepType===StepType.SqlAnnotate"></app-sql-annotate-editor>
         <app-condition-annotate-editor [step]="step" *ngIf="step.stepType===StepType.ConditionAnnotate"></app-condition-annotate-editor>
         <app-filter-editor [step]="step"  *ngIf="step.stepType===StepType.Filter"></app-filter-editor>
-        <div *ngIf="step.stepType===StepType.Export">TODO</div>
+        <app-export-editor [step]="step"  *ngIf="step.stepType===StepType.Export"></app-export-editor>
     </div>
     <div class="step-component-container" *ngIf="expanded && selectedCodeView === SelectedCodeView.Code">
         <app-low-code-editor [step]="step"></app-low-code-editor>

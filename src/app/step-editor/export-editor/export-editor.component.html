@@ -1,0 +1,25 @@
+<div section="export-step-container">
+    <section class="export-field-container">
+        <div>Table name</div>
+        <div><input type="text" name="tablename" [(ngModel)]="export.tableName" class="text-input"></div>
+    </section>
+    <section class="export-field-container">
+        <label>Include a full annotation column?</label>
+        <input type="checkbox" name="fullAnnotation" [(ngModel)]="export.fullAnnotation">
+    </section>
+    <section class="export-field-container">
+        <label>Include all rows and a 'denominator' column?</label>
+        <input type="checkbox" name="fullAnnotation" [(ngModel)]="export.fullAnnotation">
+    </section>
+
+    <section class="export-column-container">
+        <span>Columns:</span>
+        <div class="column-headers">
+            <div>Name</div>
+            <div>Type</div>
+            <div>Path</div>
+        </div>
+        <app-column-spec-editor [columnSpec]="columnSpec" *ngFor="let columnSpec of export.columnSpecs" (removeSpec)="this.removeSpec($event)"></app-column-spec-editor>
+        <button class="add-column-button" (click)="this.addSpec()">Add column</button>
+    </section>
+</div>

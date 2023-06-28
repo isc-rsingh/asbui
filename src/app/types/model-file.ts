@@ -41,7 +41,7 @@ export interface GroupObject extends OperationObject {
 export interface GroupArgs {
   steps: OperationObject[];
 }
-export interface ExportArgs {
+export interface ExportArgs extends ExportSpec {
 
 }
 
@@ -84,6 +84,7 @@ export interface SQLField {
   sqlType?: ESqlDataType;
   selectExpression: string;
   parameters?: string[];
+  dataType?: string;
 }
 export interface WhereSpec {
   clause: string;
@@ -102,7 +103,7 @@ export interface ColumnSpec {
   columnName:string;
   pathExpression: string;
   sqlType: ESqlDataType;
-  collectionType: ESqlCollectionType;
+  collectionType?: ESqlCollectionType;
 }
 
 // Descriptions of the Environment Data Block

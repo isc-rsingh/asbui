@@ -1,0 +1,79 @@
+.column-spec-container {
+    display:grid;
+    grid-template-columns: 1fr 1fr .25fr 1fr .25fr;
+}
+
+.text-input {
+    width:96%;
+    border: 1px solid #CBCBCB;
+    border-radius: 4px;
+    height:36px;
+}
+
+.remove-icon {
+    width:16px;
+    height:16px;
+    margin-top:10px;
+}
+
+.side-arrow {
+    width:28px;
+    height:28px;
+    margin-top:5px;
+    justify-self: center;
+}
+
+.name-input-container {
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+
+    width: 100%;
+    border: 1px solid #CBCBCB;
+    border-radius: 4px;
+
+    flex: none;
+    order: 0;
+    flex-grow: 1;
+}
+
+.name-input {
+    background: #FFFFFF;
+    border:none;
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+}
+
+.name-input:focus {
+    outline: none;
+}
+
+.sqltype-select {
+    width: 100%;
+    height: 36px;
+
+    background: #FFFFFF;
+
+    border: 1px solid #CBCBCB;
+    border-radius: 4px;
+}
+:host ::ng-deep .mat-mdc-select-placeholder {
+    font-family: 'Noto Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    color:#767676;
+    margin-left:6px;
+}
+
+
+:host ::ng-deep .mat-mdc-select-arrow-wrapper {
+    margin-top:-8px;
+    margin-right:5px;
+}

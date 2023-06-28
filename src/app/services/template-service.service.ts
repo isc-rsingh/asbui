@@ -68,7 +68,7 @@ export class TemplateServiceService {
                   "value": "65",
                   "dataType": EEnvDataType.number
                 }
-              }
+              } as any
             },
             "disabled": false
           },

@@ -65,7 +65,7 @@ export class StepService {
       stepId:this.highestStepId(this.currentState.currentDocument.pipelines,0)+1,
       stepType,
       arguments:{
-        ...this.defaultStepArgument(stepType)
+        ...this.defaultStepArgument(stepType) as MergeArgs | FilterArgs | ConditionAnnotateArgs | SqlAnnotateArgs | SqlPopulateArgs | GroupArgs | ExportArgs
       }
     }
     

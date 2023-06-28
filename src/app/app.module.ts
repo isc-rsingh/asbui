@@ -36,6 +36,8 @@ import { StepEnvironmentVariablesComponent } from './step-editor/step-environmen
 import { EnviromentVariableEditorComponent } from './enviroment-variable-editor/enviroment-variable-editor.component';
 import { LowCodeEditorComponent } from './step-editor/low-code-editor/low-code-editor.component';
 import { HttpInterceptorService } from './services/http-interceptor.service';
+import { ExportEditorComponent } from './step-editor/export-editor/export-editor.component';
+import { ColumnSpecEditorComponent } from './step-editor/export-editor/column-spec-editor/column-spec-editor.component';
 
 const appearance: MatFormFieldDefaultOptions = {
   appearance: 'outline'
@@ -63,7 +65,9 @@ const appearance: MatFormFieldDefaultOptions = {
     StepTypeDropdownComponent,
     StepEnvironmentVariablesComponent,
     EnviromentVariableEditorComponent,
-    LowCodeEditorComponent
+    LowCodeEditorComponent,
+    ExportEditorComponent,
+    ColumnSpecEditorComponent
   ],
   imports: [
     BrowserModule,

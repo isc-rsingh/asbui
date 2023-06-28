@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { CurrentStateService } from './services/current-state.service';
-import { EEnvDataType, EEnvSource, StepType } from './types/model-file';
+import { EEnvDataType, EEnvSource, ESqlDataType, StepType } from './types/model-file';
 
 
 @Component({
@@ -97,7 +97,7 @@ export class AppComponent implements OnInit {
               "arguments": {
                 "steps": [
                   {
-                    "stepType": "conditionAnnotate",
+                    "stepType": StepType.ConditionAnnotate,
                     "stepId": 4,
                     "description": "# inpatient encounters",
                     "arguments": {
@@ -108,7 +108,7 @@ export class AppComponent implements OnInit {
                     "disabled": false
                   },
                   {
-                    "stepType": "conditionAnnotate",
+                    "stepType": StepType.ConditionAnnotate,
                     "stepId": 5,
                     "description": "# outpatient encounters",
                     "arguments": {
@@ -119,7 +119,7 @@ export class AppComponent implements OnInit {
                     "disabled": false
                   },
                   {
-                    "stepType": "conditionAnnotate",
+                    "stepType": StepType.ConditionAnnotate,
                     "stepId": 6,
                     "description": "outpt diagnosis code",
                     "arguments": {
@@ -130,7 +130,7 @@ export class AppComponent implements OnInit {
                     "disabled": false
                   },
                   {
-                    "stepType": "conditionAnnotate",
+                    "stepType": StepType.ConditionAnnotate,
                     "stepId": 7,
                     "description": "inpt diagnosis code",
                     "arguments": {
@@ -141,7 +141,7 @@ export class AppComponent implements OnInit {
                     "disabled": false
                   },
                   {
-                    "stepType": "filter",
+                    "stepType": StepType.Filter,
                     "stepId": 8,
                     "description": "visit counts are met",
                     "arguments": {
@@ -161,7 +161,7 @@ export class AppComponent implements OnInit {
               "arguments": {
                 "steps": [
                   {
-                    "stepType": "sqlAnnotate",
+                    "stepType": StepType.ConditionAnnotate,
                     "stepId": 10,
                     "description": "calculate age",
                     "arguments": {
@@ -186,7 +186,7 @@ export class AppComponent implements OnInit {
                     "disabled": false
                   },
                   {
-                    "stepType": "filter",
+                    "stepType": StepType.Filter,
                     "stepId": 11,
                     "description": "age range",
                     "arguments": {
@@ -206,7 +206,7 @@ export class AppComponent implements OnInit {
               "arguments": {
                 "steps": [
                   {
-                    "stepType": "sqlAnnotate",
+                    "stepType": StepType.ConditionAnnotate,
                     "stepId": 13,
                     "description": "lab tests",
                     "arguments": {
@@ -237,7 +237,7 @@ export class AppComponent implements OnInit {
                     "disabled": false
                   },
                   {
-                    "stepType": "conditionAnnotate",
+                    "stepType": StepType.ConditionAnnotate,
                     "stepId": 14,
                     "description": "HbA1c numerators",
                     "arguments": {
@@ -248,7 +248,7 @@ export class AppComponent implements OnInit {
                     "disabled": false
                   },
                   {
-                    "stepType": "conditionAnnotate",
+                    "stepType": StepType.ConditionAnnotate,
                     "stepId": 15,
                     "description": "HbA1c numerators",
                     "arguments": {
@@ -259,7 +259,7 @@ export class AppComponent implements OnInit {
                     "disabled": false
                   },
                   {
-                    "stepType": "conditionAnnotate",
+                    "stepType": StepType.ConditionAnnotate,
                     "stepId": 16,
                     "description": "HbA1c numerators",
                     "arguments": {
@@ -270,7 +270,7 @@ export class AppComponent implements OnInit {
                     "disabled": false
                   },
                   {
-                    "stepType": "conditionAnnotate",
+                    "stepType": StepType.ConditionAnnotate,
                     "stepId": 17,
                     "description": "HbA1c numerators",
                     "arguments": {
@@ -295,27 +295,27 @@ export class AppComponent implements OnInit {
                   {
                     "columnName": "age",
                     "pathExpression": "demographic.age",
-                    "sqlType": "INT"
+                    "sqlType": ESqlDataType.integer
                   },
                   {
                     "columnName": "gender",
                     "pathExpression": "demographic.gender",
-                    "sqlType": "VARCHAR(4000)"
+                    "sqlType": ESqlDataType.string
                   },
                   {
                     "columnName": "Race",
                     "pathExpression": "demographic.Race",
-                    "sqlType": "VARCHAR(4000)"
+                    "sqlType": ESqlDataType.string
                   },
                   {
                     "columnName": "zip",
                     "pathExpression": "demographic.zip",
-                    "sqlType": "VARCHAR(4000)"
+                    "sqlType": ESqlDataType.string
                   },
                   {
                     "columnName": "HbA1cGTE6_5",
                     "pathExpression": "HbA1cGTE6_5",
-                    "sqlType": "INT"
+                    "sqlType": ESqlDataType.integer
                   }
                 ]
               },

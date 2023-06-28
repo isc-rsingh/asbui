@@ -1,0 +1,21 @@
+
+
+.text-input {
+    width:96%;
+    border: 1px solid #CBCBCB;
+    border-radius: 4px;
+    height:36px;
+}
+
+.column-headers {
+    display:grid;
+    grid-template-columns:  1fr 1.25fr 1.25fr;
+}
+
+.export-column-container {
+    margin-top:16px;
+}
+
+.add-column-button {
+    margin-top:10px;
+}
