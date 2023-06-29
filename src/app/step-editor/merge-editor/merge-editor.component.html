@@ -1,0 +1,6 @@
+<div class="merge-container">
+    <div class="merge-label">Pipelines to Merge</div>
+    <mat-select *ngFor="let pipeline of mergeArgs.pipelineNames; index as i" [(value)]="mergeArgs.pipelineNames[i]">
+        <mat-option *ngFor="let pipelineName of pipelineNames" [value]="pipelineName">{{pipelineName}}</mat-option>
+    </mat-select>
+</div>

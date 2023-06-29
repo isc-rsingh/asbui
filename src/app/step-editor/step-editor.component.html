@@ -13,7 +13,7 @@
     <div class="step-component-container" *ngIf="expanded && selectedCodeView === SelectedCodeView.Step">
         <div *ngIf="step.stepType===StepType.Pipeline">TODO</div>
         <div *ngIf="step.stepType===StepType.Group">TODO</div>
-        <div *ngIf="step.stepType===StepType.Merge">TODO</div>
+        <app-merge-editor [step]="step" *ngIf="step.stepType === StepType.Merge"></app-merge-editor> 
         <app-sql-populate-editor [step]="step" *ngIf="step.stepType === StepType.SqlPopulate"></app-sql-populate-editor>
         <app-sql-annotate-editor [step]="step" *ngIf="step.stepType===StepType.SqlAnnotate"></app-sql-annotate-editor>
         <app-condition-annotate-editor [step]="step" *ngIf="step.stepType===StepType.ConditionAnnotate"></app-condition-annotate-editor>

@@ -394,7 +394,9 @@ export class StepService {
           steps:[]
         } as GroupArgs
       case StepType.Merge:
-        return {} as MergeArgs;
+        return {
+          pipelineNames:[]
+        } as MergeArgs;
       case StepType.Pipeline:
         return {}
       case StepType.SqlAnnotate: 

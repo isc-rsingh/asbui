@@ -40,6 +40,7 @@ import { ExportEditorComponent } from './step-editor/export-editor/export-editor
 import { ColumnSpecEditorComponent } from './step-editor/export-editor/column-spec-editor/column-spec-editor.component';
 import { SqlPopulateEditorComponent } from './step-editor/sql-populate-editor/sql-populate-editor.component';
 import { SqlFieldEditorComponent } from './components/sql-field-editor/sql-field-editor.component';
+import { MergeEditorComponent } from './step-editor/merge-editor/merge-editor.component';
 
 const appearance: MatFormFieldDefaultOptions = {
   appearance: 'outline'
@@ -71,7 +72,8 @@ const appearance: MatFormFieldDefaultOptions = {
     ExportEditorComponent,
     ColumnSpecEditorComponent,
     SqlPopulateEditorComponent,
-    SqlFieldEditorComponent
+    SqlFieldEditorComponent,
+    MergeEditorComponent
   ],
   imports: [
     BrowserModule,
