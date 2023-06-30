@@ -43,15 +43,6 @@
     grid-template-columns: auto 175px;
 }
 
-.play-button {
-    height:20px;
-    width:20px;
-    margin-right:12px;
-    position:relative;
-    top:3px;
-
-}
-
 .model-name {
     
     font-family: 'Noto Sans';
@@ -77,6 +68,7 @@
 .buttons-container .button-container:nth-child(2) {
     border: 1px solid #CBCBCB;
     border-radius: 4px 0 0 4px;
+    margin-left:20px;
     padding:0;
     background-color:#f6f6f6;
     img {
@@ -131,4 +123,26 @@
     width: 200px;
     height: 100%;
     z-index: 100;
+}
+
+.run-model-button {
+    background-color: #333695;
+    border-radius: 4px;
+    color:#ECF0F1;
+    width:78px;
+    fill:#ECF0F1;
+    display:flex;
+    align-items: center;
+
+    span {
+        margin-left:4px;
+        font-size: 13px;
+        font-family: Noto Sans;
+        font-weight: 600;
+    }
+
+    .play-button {
+        height:20px;
+        width:20px;
+    }
 }

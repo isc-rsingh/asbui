@@ -1,4 +1,5 @@
 <div class="editor-pane-container">
+    <mat-progress-spinner *ngIf="showProgress" mode="indeterminate"></mat-progress-spinner>
     <canvas class="thumbnail-bar"></canvas>
     <div class="search-input-container">
         <mat-icon fontIcon="add" class="filter-icon"></mat-icon>
@@ -10,7 +11,7 @@
         <span class="model-name">{{currentDocument.modelName}}</span>
         
         <div class="buttons-container">
-            <img src="./assets/play.svg" class="play-button">
+            <button class="run-model-button" (click)="runModel()"><img src="./assets/play.svg" class="play-button"><span>Run</span></button>
             <div class="button-container" [ngClass]="{'selected':currentView===SelectedCodeView.Block}">
                 <img src="./assets/lowcodeview.svg" class="img-button" (click)="changeView(SelectedCodeView.Block)">
             </div>

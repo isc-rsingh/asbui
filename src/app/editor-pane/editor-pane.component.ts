@@ -4,6 +4,7 @@ import { BreadcrumbIconType } from './breadcrumb/breadcrumb.component';
 import { EditorContextService, SelectedCodeView } from '../services/editor-context.service';
 import { Subject, takeUntil } from 'rxjs';
 import { StepService } from '../services/step.service';
+import { RunService } from '../services/run.service';
 
 export interface BreadcrumbData {
   name:string,
@@ -28,6 +29,8 @@ export class EditorPaneComponent implements OnInit, OnDestroy{
 
   currentStepId:number | null;
 
+  showProgress = false
+
   get currentDocument():ObjectFile {
     return this._currentDocument;
   }
@@ -36,7 +39,11 @@ export class EditorPaneComponent implements OnInit, OnDestroy{
     this._currentDocument = val;
   }
 
-  constructor(public editorContextService:EditorContextService, private stepService:StepService) {}
+  constructor(
+    private editorContextService:EditorContextService, 
+    private stepService:StepService,
+    private runService:RunService,
+    ) {}
   
   private destroy$: Subject<void> = new Subject<void>();
   private breadcrumbPath:number[] | null;
@@ -80,6 +87,15 @@ export class EditorPaneComponent implements OnInit, OnDestroy{
   
   public changeView(view:SelectedCodeView) {
     this.editorContextService.setCurrentSelectedCodeView$(view);
+  }
+
+  async runModel() {
+    this.showProgress = true;
+    try {
+      await this.runService.runCurrentModel();
+    } finally {
+      this.showProgress = false;
+    }
   }
 
 

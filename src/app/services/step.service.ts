@@ -147,6 +147,20 @@ export class StepService {
     return null;
   }
 
+  public GetPipelineForStep(file: ObjectFile, stepId:number): string {
+    let pipelineStep = file.pipelines.find(p=>p.stepId === stepId);
+    if (pipelineStep) return pipelineStep.name;
+    
+    let s = this.GetParentStep(file, stepId);
+    if (s !== null) {
+      while (s.stepType !== StepType.Pipeline) {
+        s = this.GetParentStep(file, s.stepId);
+        if (s === null) {return "";}  
+      }
+    }
+    return (s as PipelineObject).name || "";
+  }
+
   public moveStepWithinGroup(stepToMoveId:number, stepToPlaceBeforeId:number, withinGroupId: number) {
     const groupStep = this.GetStep(this.currentState.currentDocument,withinGroupId) as GroupObject;
     const stepToMove = this.GetStep(this.currentState.currentDocument, stepToMoveId);

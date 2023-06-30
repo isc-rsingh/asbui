@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable,map } from 'rxjs';
 import { ObjectFile } from '../types/model-file';
+import { RunResponse } from '../types/runResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -24,4 +25,11 @@ export class AppDaoService {
     return this.httpClient.get<ObjectFile>(this.baseUri + '$model/' + modelName).pipe(map((resp:any)=>{return resp.program as ObjectFile}));
   };
 
+  public runModel(model:ObjectFile, pipelineToRun:string):Observable<RunResponse> {
+    return this.httpClient.post<RunResponse>(this.baseUri + '$run', {
+      JDBCConnection:"localORANGEDATA",
+      modelDef:model,
+      pipelineToRun
+    });
+  }
 }
