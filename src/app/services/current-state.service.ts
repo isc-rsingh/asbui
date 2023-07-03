@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ObjectFile } from '../types/model-file';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { RunResponse } from '../types/runResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,8 @@ export class CurrentStateService {
     "pipelines":[]
   });
 
+  private _currentRunHistory = new BehaviorSubject<RunResponse | null>(null);
+
   get currentDocument():ObjectFile {
     return this._currentDocument.value;
   }
@@ -27,5 +30,17 @@ export class CurrentStateService {
 
   public setCurrentDocument(doc:ObjectFile) {
     this._currentDocument.next(doc);
+  }
+
+  get currentRunHistory():RunResponse | null {
+    return this._currentRunHistory.value;
+  }
+
+  get currentRunHistory$(): Observable<RunResponse | null> {
+    return this._currentRunHistory.asObservable();
+  }
+
+  public setCurrentRunHistory(runHistory:RunResponse | null) {
+    this._currentRunHistory.next(runHistory);
   }
 }

@@ -4,6 +4,7 @@ import { BlockTemplate, TemplateServiceService } from '../services/template-serv
 import { firstValueFrom, lastValueFrom} from 'rxjs';
 import { CurrentStateService } from '../services/current-state.service';
 import { DragHelperService, DragObjectType, DragSource } from '../services/drag-helper.service';
+import { RunService } from '../services/run.service';
 
 @Component({
   selector: 'app-templates-outline',
@@ -29,6 +30,7 @@ export class TemplatesOutlineComponent implements OnInit {
     private templateService:TemplateServiceService, 
     private currentStateService:CurrentStateService,
     private dragHelperService:DragHelperService,
+    private runService:RunService,
   ) {}
 
   async ngOnInit() {
@@ -48,6 +50,8 @@ export class TemplatesOutlineComponent implements OnInit {
   public async openTemplate(template:TemplateFile) {
     const model = await firstValueFrom(this.templateService.GetModel(template));
     this.currentStateService.setCurrentDocument(model);
+    const runHistory = await firstValueFrom(this.runService.getRunHistory());
+    this.currentStateService.setCurrentRunHistory(runHistory);
   }
 
   dragStart(evt:DragEvent, blockTemplate:BlockTemplate) {

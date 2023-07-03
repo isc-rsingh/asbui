@@ -4,7 +4,7 @@
     width:96%;
     border: 1px solid #CBCBCB;
     border-radius: 4px;
-    height:36px;
+    height:34px;
 }
 
 .column-headers {
@@ -18,4 +18,18 @@
 
 .add-column-button {
     margin-top:10px;
+    width:102px;
+}
+
+.export-column-add-view-data {
+    display:grid;
+    grid-template-columns:  1fr 145px;
+}
+
+.view-data-button {
+    align-self: center;
+}
+
+app-column-spec-editor {
+    margin-bottom:4px;
 }

@@ -10,6 +10,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatListModule} from '@angular/material/list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSelectModule} from '@angular/material/select';
+import {MatTableModule} from '@angular/material/table';
+
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
 
@@ -42,6 +44,7 @@ import { ColumnSpecEditorComponent } from './step-editor/export-editor/column-sp
 import { SqlPopulateEditorComponent } from './step-editor/sql-populate-editor/sql-populate-editor.component';
 import { SqlFieldEditorComponent } from './components/sql-field-editor/sql-field-editor.component';
 import { MergeEditorComponent } from './step-editor/merge-editor/merge-editor.component';
+import { DataPreviewRowComponent } from './data-preview/data-preview-row/data-preview-row.component';
 
 const appearance: MatFormFieldDefaultOptions = {
   appearance: 'outline'
@@ -74,7 +77,8 @@ const appearance: MatFormFieldDefaultOptions = {
     ColumnSpecEditorComponent,
     SqlPopulateEditorComponent,
     SqlFieldEditorComponent,
-    MergeEditorComponent
+    MergeEditorComponent,
+    DataPreviewRowComponent
   ],
   imports: [
     BrowserModule,
@@ -88,6 +92,7 @@ const appearance: MatFormFieldDefaultOptions = {
     MatListModule,
     MatProgressSpinnerModule,
     MatSelectModule,
+    MatTableModule,
     DragDropModule,
   ],
   providers: [
