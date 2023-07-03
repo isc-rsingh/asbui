@@ -31,7 +31,7 @@
 
     <div class="bread-crumb-container">
         <app-breadcrumb [text]="'my org'" [context]="null" [iconType]="BreadcrumbIconType.Org"></app-breadcrumb>
-        <app-breadcrumb [text]="currentDocument.modelName" [context]="null" [iconType]="BreadcrumbIconType.Pipeline"></app-breadcrumb>
+        <app-breadcrumb [text]="currentDocument.modelName" [context]="null" [iconType]="BreadcrumbIconType.Model"></app-breadcrumb>
         <app-breadcrumb *ngFor="let breadcrumb of breadcrumbs" [text]="breadcrumb.name" [iconType]="breadcrumb.iconType" [context]="breadcrumb.stepId" [rightMostCrumb]="breadcrumb.isLast"></app-breadcrumb>
     </div>
 

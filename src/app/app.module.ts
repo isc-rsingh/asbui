@@ -12,6 +12,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSelectModule} from '@angular/material/select';
 import {MatTableModule} from '@angular/material/table';
 
+import { AngularSplitModule } from 'angular-split';
 
 import {DragDropModule} from '@angular/cdk/drag-drop';
 
@@ -94,6 +95,7 @@ const appearance: MatFormFieldDefaultOptions = {
     MatSelectModule,
     MatTableModule,
     DragDropModule,
+    AngularSplitModule,
   ],
   providers: [
     {

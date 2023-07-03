@@ -1,13 +1,15 @@
 <section class="main-container">
-    <section class="model-info-workspace">
-        <app-datasets-outline [currentDocument]="currentDocument"></app-datasets-outline>
-        <app-model-outline [currentDocument]="currentDocument"></app-model-outline>
-        <app-templates-outline></app-templates-outline>
-    </section>
-    <section class="model-editor-workspace">
-        <app-editor-pane [currentDocument]="currentDocument"></app-editor-pane>
-    </section>
-    <section class="model-explorer-workspace">
-        <app-data-preview></app-data-preview>
-    </section>
+    <as-split direction="horizontal">
+        <as-split-area [size]="20">
+            <app-datasets-outline [currentDocument]="currentDocument"></app-datasets-outline>
+            <app-model-outline [currentDocument]="currentDocument"></app-model-outline>
+            <app-templates-outline></app-templates-outline>
+        </as-split-area>
+        <as-split-area [size]="50">
+            <app-editor-pane [currentDocument]="currentDocument"></app-editor-pane>
+        </as-split-area>
+        <as-split-area [size]="30">
+            <app-data-preview></app-data-preview>
+        </as-split-area>
+    </as-split>
 </section>

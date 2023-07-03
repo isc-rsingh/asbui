@@ -3,6 +3,7 @@ import { EditorContextService } from 'src/app/services/editor-context.service';
 
 export enum BreadcrumbIconType {
   Org,
+  Model,
   Pipeline,
   Group,
   Step
