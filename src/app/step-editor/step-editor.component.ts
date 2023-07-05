@@ -13,6 +13,8 @@ import { Subject, takeUntil } from 'rxjs';
 export class StepEditorComponent implements OnInit, OnDestroy {
   @Input() step:StepObject;
   @Input() groupId:number | undefined;
+  @Input() expanded:boolean=false;
+  @Input() blockHeader:boolean=false;
 
   editing:boolean=false;
   selectedCodeView: SelectedCodeView
@@ -31,8 +33,6 @@ export class StepEditorComponent implements OnInit, OnDestroy {
     this.destroy$.next();
     this.destroy$.complete();
   }
-
-  public expanded:boolean=false;
 
   private destroy$: Subject<void> = new Subject<void>();
 
@@ -89,6 +89,9 @@ export class StepEditorComponent implements OnInit, OnDestroy {
     }
   }
 
+  get stepColor():string {
+    return this.stepService.GetStepTypes().find((stepType) => this.step.stepType === stepType.jsonName)?.color || "";
+  }
 
   get StepType() {
     return StepType;

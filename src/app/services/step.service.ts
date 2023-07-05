@@ -12,6 +12,7 @@ export interface StepMetadata {
   displayName:string;
   description: string;
   canAddToGroup: boolean;
+  color: string;
 }
 
 @Injectable({
@@ -73,17 +74,21 @@ export class StepService {
     group.arguments.steps.push(newStep);
   }
 
+  public GetStepTypes(): StepMetadata[] {
+    return [
+      {jsonName:StepType.Pipeline, displayName:"Pipeline",description:"Independent set of instructions", canAddToGroup:false, color:'#6FB7ED'},
+      {jsonName:StepType.Group, displayName:"Group",description:"A group of instructions", canAddToGroup:false, color:'#E2C2F3'},
+      {jsonName:StepType.Merge, displayName:"Merge",description:"Merges two groups of data together", canAddToGroup:true, color:'#ECF0F1'},
+      {jsonName:StepType.SqlPopulate, displayName:"Populate",description:"Retrieve data from an external source", canAddToGroup:true, color:'#6AEFDD'},
+      {jsonName:StepType.SqlAnnotate, displayName:"Get",description:"Add a field for use throughout the model", canAddToGroup:true,color:'#B1B9FF'},
+      {jsonName:StepType.ConditionAnnotate, displayName:"Derive",description:"Add a conditional variable for use throughout the model", canAddToGroup:true, color:'#FA9961'},
+      {jsonName:StepType.Filter, displayName:"Filter",description:"Narrow the rows available in the model", canAddToGroup:true, color:'#ECD8A3'},
+      {jsonName:StepType.Export, displayName:"Export",description:"Write the model to an external source", canAddToGroup:true, color:'#F58ECB'},
+    ]
+  }
+
   public GetStepTypes$(): Observable<StepMetadata[]> {
-    return of([
-      {jsonName:StepType.Pipeline, displayName:"Pipeline",description:"Independent set of instructions", canAddToGroup:false},
-      {jsonName:StepType.Group, displayName:"Group",description:"A group of instructions", canAddToGroup:false},
-      {jsonName:StepType.Merge, displayName:"Merge",description:"Merges two groups of data together", canAddToGroup:true},
-      {jsonName:StepType.SqlPopulate, displayName:"Populate",description:"Retrieve data from an external source", canAddToGroup:true},
-      {jsonName:StepType.SqlAnnotate, displayName:"Get",description:"Add a field for use throughout the model", canAddToGroup:true},
-      {jsonName:StepType.ConditionAnnotate, displayName:"Derive",description:"Add a conditional variable for use throughout the model", canAddToGroup:true},
-      {jsonName:StepType.Filter, displayName:"Filter",description:"Narrow the rows available in the model", canAddToGroup:true},
-      {jsonName:StepType.Export, displayName:"Export",description:"Write the model to an external source", canAddToGroup:true},
-    ]);
+    return of(this.GetStepTypes());
   }
 
   public GetStep(file: ObjectFile | null, stepId:number): OperationObject | null{

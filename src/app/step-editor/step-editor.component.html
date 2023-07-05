@@ -1,13 +1,13 @@
-<div class="step-container" draggable="true" (dragover)="dragOver($event)" (dragstart)="dragStart($event)" (drop)="drop($event)">
-    <div class="step-header">
+<div class="step-container" draggable="true" (dragover)="dragOver($event)" (dragstart)="dragStart($event)" (drop)="drop($event)" [ngStyle]="blockHeader && {'border-top-color':stepColor,'border-top-width':'4px'} || null">
+    <div class="step-header" [ngClass]="{'block-header':blockHeader}">
         <img src="./assets/step.svg" class="step-icon">
         <span class="step-label">Step:</span>
         <app-step-type-dropdown [(stepType)]="step.stepType"></app-step-type-dropdown>
         <span class="step-description" *ngIf="!editing" (click)="editing=true">{{step.description}}</span>
         <input class="step-description" *ngIf="editing" [(ngModel)]="step.description" (blur)="editing=false" (keyup.enter)="editing=false">
         <section class="expander-section">
-            <mat-icon fontIcon="arrow_drop_down" class="expander-icon" *ngIf="expanded" (click)="expanded = !expanded"></mat-icon>
-            <mat-icon fontIcon="arrow_drop_up" class="expander-icon" *ngIf="!expanded" (click)="expanded = !expanded"></mat-icon>
+            <mat-icon fontIcon="arrow_drop_down" class="expander-icon" *ngIf="expanded && !blockHeader" (click)="expanded = !expanded"></mat-icon>
+            <mat-icon fontIcon="arrow_drop_up" class="expander-icon" *ngIf="!expanded && !blockHeader" (click)="expanded = !expanded"></mat-icon>
         </section>
     </div>
     <div class="step-component-container" *ngIf="expanded && selectedCodeView === SelectedCodeView.Step">

@@ -13,7 +13,7 @@ import { RunService } from '../services/run.service';
 })
 export class TemplatesOutlineComponent implements OnInit {
   
-  public expanded:boolean = false;
+  public expanded:boolean = true;
   public standardExpanded:boolean = true;
   public userExpanded:boolean = true;
   public blockExpanded:boolean = true;

@@ -1,1 +1,6 @@
-<p>block-settings-pane works!</p>
+<div class="block-settings-container">
+    <section *ngFor="let step of steps" class="block-settings-step">
+        <app-group-editor *ngIf="step.stepType===StepType.Group" [step]="step" [isLastGroup]="false"></app-group-editor>
+        <app-step-editor *ngIf="step.stepType!==StepType.Group"[step]="step" [expanded]="true" [blockHeader]="true"></app-step-editor>
+    </section>
+</div>
