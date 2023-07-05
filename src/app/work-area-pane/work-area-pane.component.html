@@ -1,0 +1,20 @@
+<div class="work-pane-header">
+    <div class="work-pane-header-title" [ngClass]="{'pane-selected':currentView === WorkAreaViewType.Block}" (click)="setView(WorkAreaViewType.Block)">
+        <span>Blocks</span>
+    </div>
+    <div class="work-pane-header-title" [ngClass]="{'pane-selected':currentView === WorkAreaViewType.Variables}" (click)="setView(WorkAreaViewType.Variables)">
+        <span>Variables</span>
+    </div>
+    <div class="work-pane-header-title" [ngClass]="{'pane-selected':currentView === WorkAreaViewType.RunReport}" (click)="setView(WorkAreaViewType.RunReport)">
+        <span>Run Report</span>
+    </div>
+    <div class="work-pane-header-title" [ngClass]="{'pane-selected':currentView === WorkAreaViewType.Settings}" (click)="setView(WorkAreaViewType.Settings)">
+        <span>Settings</span>
+    </div>
+</div>
+<div class="work-pane-body">
+    <app-block-work-area-pane *ngIf="currentView === WorkAreaViewType.Block"></app-block-work-area-pane>
+    <app-block-variable-pane *ngIf="currentView === WorkAreaViewType.Variables"></app-block-variable-pane>
+    <app-block-run-report-pane *ngIf="currentView === WorkAreaViewType.RunReport"></app-block-run-report-pane>
+    <app-block-settings-pane *ngIf="currentView === WorkAreaViewType.Settings"></app-block-settings-pane>
+</div>

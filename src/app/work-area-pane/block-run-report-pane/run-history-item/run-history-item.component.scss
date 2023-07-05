@@ -1,0 +1,27 @@
+.run-history-item-container {
+    padding-left:20px;
+    padding-right:20px;
+}
+
+.run-history-item-header {
+    display:grid;
+    grid-template-columns: 20px 1fr;
+}
+
+.status-indicator {
+    top:4px;
+    position:relative;
+    margin-right:3px;
+}
+
+.green-icon {
+    color:#34820D;
+}
+
+.red-icon {
+    color: #CA0000
+}
+
+.orange-icon {
+    color:#A75400
+}

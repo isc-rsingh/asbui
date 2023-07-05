@@ -1,0 +1,8 @@
+<div class="block-run-report-pane-container">
+    <div class="no-run-history" *ngIf="!runHistory || !runHistory.runs.length">
+        There is no run history for this model.
+    </div>
+    <div class="runs-container" *ngIf="runHistory">
+        <app-run-history-item [runHistoryItem]="runHistoryItem" *ngFor="let runHistoryItem of runHistory?.runs"></app-run-history-item>
+    </div>
+</div>

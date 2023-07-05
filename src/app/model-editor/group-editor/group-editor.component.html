@@ -1,7 +1,7 @@
-<div class="group-component-container">
-    <div class="group-container">
+<div class="group-component-container" (click)="setFocus()">
+    <div class="group-container" [ngClass]="{'group-selected':groupIsSelected}">
         <div class="group-header" (dragover)="dragover($event)" (drop)="drop($event)">
-            <span *ngIf="!editing" (click)="showDescriptionInput()" class="group-name-label">{{group.description}}</span>
+            <span *ngIf="!editing" (click)="showDescriptionInput($event)" class="group-name-label">{{group.description}}</span>
             <input *ngIf="editing" type="text" name="group-name" [(ngModel)]="group.description" class="group-name-input" (focusout)="editing=false" #groupNameInput>
         </div>
         <div class="step-container" *ngIf="currentView !== SelectedCodeView.Block">

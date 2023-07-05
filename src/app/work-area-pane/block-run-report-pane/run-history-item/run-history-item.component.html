@@ -1,0 +1,16 @@
+<div class="run-history-item-container">
+    <div class="run-history-item-header">
+        <section><mat-icon [fontIcon]="expand ? 'arrow_drop_down' : 'arrow_right'" (click)="expand = !expand"></mat-icon> </section>
+        <section>
+            <mat-icon fontIcon="check_circle" class="green-icon status-indicator" *ngIf="!runHistoryItem.status" [inline]="true"></mat-icon>
+            <mat-icon fontIcon="error" class="red-icon status-indicator" *ngIf="runHistoryItem.status && runHistoryItem.status.indexOf('ERROR') >=0" [inline]="true"></mat-icon>
+            <mat-icon fontIcon="warning" class="orange-icon status-indicator" *ngIf="runHistoryItem.status && runHistoryItem.status.indexOf('ERROR') < 0" [inline]="true"></mat-icon>
+            <span>Run {{runHistoryItem.runID}} - {{runHistoryItem.timestamp}} </span>
+        </section>
+        <section *ngIf="expand">&nbsp;</section>
+        <section *ngIf="expand" class="status-display">
+            {{runHistoryItem.status}}
+            <span *ngIf="!runHistoryItem.status">View results...</span>
+        </section>
+    </div>
+</div>

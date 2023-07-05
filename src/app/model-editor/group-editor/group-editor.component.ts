@@ -21,7 +21,7 @@ export class GroupEditorComponent implements OnInit, OnDestroy{
   expanded:boolean[]=[];
   editing:boolean=false;
   currentView: SelectedCodeView;
-  
+  groupIsSelected:boolean=false;
 
   get group():GroupObject {
     return this.step as GroupObject;
@@ -39,6 +39,13 @@ export class GroupEditorComponent implements OnInit, OnDestroy{
   ngOnInit(): void {
     this.editorContextService.currentSelectedCodeView$.pipe(takeUntil(this.destroy$)).subscribe((view) => { 
       this.currentView = view;
+    });
+
+    this.editorContextService.currentFocusedBlockId$.pipe(takeUntil(this.destroy$)).subscribe((blockId) => {
+      this.groupIsSelected = false;
+      if (this.step.stepId === blockId) {
+        this.groupIsSelected = true;
+      } 
     });
   }
 
@@ -60,9 +67,9 @@ export class GroupEditorComponent implements OnInit, OnDestroy{
   //   moveItemInArray(steps, event.previousIndex, event.currentIndex);
   // }
 
-  showDescriptionInput() {
+  showDescriptionInput($event:MouseEvent) {
     this.editing = true;
-    
+    $event.stopPropagation();
     setTimeout(()=>{
       this.groupNameInput.nativeElement.focus();
     },0);
@@ -86,6 +93,10 @@ export class GroupEditorComponent implements OnInit, OnDestroy{
     if (ctx && this.dragHelperService.isBlockTemplate()) {
       this.stepService.AddBlockTemplateBeforeGroup(ctx.id+'',this.group.stepId);
     }
+  }
+
+  setFocus() {
+    this.editorContextService.setCurrentFocusedBlockId$(this.group.stepId);
   }
 
 

@@ -1,0 +1,25 @@
+.work-pane-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;;
+    padding: 0px 16px 0px 8px;
+    gap: 2px;
+    background-color: #f2f2f2;
+}
+
+.work-pane-header-title {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-size: 12px;
+    font-family: Noto Sans;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: uppercase;
+    color:#CBCBCB;
+    height:40px;
+}
+
+.work-pane-header-title.pane-selected {
+    color: #3C3C3D;
+}

@@ -86,7 +86,10 @@ export class StepService {
     ]);
   }
 
-  public GetStep(file: ObjectFile, stepId:number): OperationObject | null{
+  public GetStep(file: ObjectFile | null, stepId:number): OperationObject | null{
+
+    if (!file) {file = this.currentState.currentDocument;}
+    
     const recurseSteps = (operation:OperationObject):OperationObject | null => {
       if (operation.stepId === stepId) {
         return operation;

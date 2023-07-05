@@ -1,0 +1,6 @@
+<div class="block-variable-pane-container">
+    <app-step-environment-variables [step]="currentBlock" *ngIf="currentBlock"></app-step-environment-variables>
+    <div *ngIf="!currentBlock">
+        ...
+    </div>
+</div>

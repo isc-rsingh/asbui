@@ -46,6 +46,12 @@ import { SqlPopulateEditorComponent } from './step-editor/sql-populate-editor/sq
 import { SqlFieldEditorComponent } from './components/sql-field-editor/sql-field-editor.component';
 import { MergeEditorComponent } from './step-editor/merge-editor/merge-editor.component';
 import { DataPreviewRowComponent } from './data-preview/data-preview-row/data-preview-row.component';
+import { WorkAreaPaneComponent } from './work-area-pane/work-area-pane.component';
+import { BlockWorkAreaPaneComponent } from './work-area-pane/block-work-area-pane/block-work-area-pane.component';
+import { BlockVariablePaneComponent } from './work-area-pane/block-variable-pane/block-variable-pane.component';
+import { BlockSettingsPaneComponent } from './work-area-pane/block-settings-pane/block-settings-pane.component';
+import { BlockRunReportPaneComponent } from './work-area-pane/block-run-report-pane/block-run-report-pane.component';
+import { RunHistoryItemComponent } from './work-area-pane/block-run-report-pane/run-history-item/run-history-item.component';
 
 const appearance: MatFormFieldDefaultOptions = {
   appearance: 'outline'
@@ -79,7 +85,13 @@ const appearance: MatFormFieldDefaultOptions = {
     SqlPopulateEditorComponent,
     SqlFieldEditorComponent,
     MergeEditorComponent,
-    DataPreviewRowComponent
+    DataPreviewRowComponent,
+    WorkAreaPaneComponent,
+    BlockWorkAreaPaneComponent,
+    BlockVariablePaneComponent,
+    BlockSettingsPaneComponent,
+    BlockRunReportPaneComponent,
+    RunHistoryItemComponent
   ],
   imports: [
     BrowserModule,
