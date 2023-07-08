@@ -1,3 +1,8 @@
-<div class="low-code-container">
-    <textarea class="low-code-editor" [(ngModel)]="json" (change)="updateFromJson()"></textarea>
-</div>
+<form [formGroup]="form">
+    <div class="low-code-container">
+        <textarea class="low-code-editor" spellcheck="false" #textarea formControlName="content"></textarea>
+        <pre aria-hidden="true" class="line-numbers" #pre>
+            <code class="language-json code" #code></code>
+        </pre>
+    </div>
+</form>
