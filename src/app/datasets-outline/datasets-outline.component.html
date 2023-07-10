@@ -1,6 +1,6 @@
 <div class="expander-header">
     <mat-icon fontIcon="arrow_drop_down" class="expander-icon" *ngIf="expanded" (click)="expanded = !expanded"></mat-icon>
-    <mat-icon fontIcon="arrow_drop_up" class="expander-icon" *ngIf="!expanded" (click)="expanded = !expanded"></mat-icon>
+    <mat-icon fontIcon="arrow_right" class="expander-icon" *ngIf="!expanded" (click)="expanded = !expanded"></mat-icon>
     <span class="expander-title">Model Parameters</span>
 </div>
 <section class="content-container">
@@ -13,7 +13,7 @@
         
         <div class="subsection-expander-header">
             <mat-icon fontIcon="arrow_drop_down" class="subsection-expander-icon" *ngIf="inputsExpanded" (click)="inputsExpanded = !inputsExpanded"></mat-icon>
-            <mat-icon fontIcon="arrow_drop_up" class="subsection-expander-icon" *ngIf="!inputsExpanded" (click)="inputsExpanded = !inputsExpanded"></mat-icon>
+            <mat-icon fontIcon="arrow_right" class="subsection-expander-icon" *ngIf="!inputsExpanded" (click)="inputsExpanded = !inputsExpanded"></mat-icon>
             <span class="subsection-expander-title">Model Inputs / Data Sources</span>
         </div>
 
@@ -26,7 +26,7 @@
 
         <div class="subsection-expander-header">
             <mat-icon fontIcon="arrow_drop_down" class="subsection-expander-icon" *ngIf="environmentExpanded" (click)="environmentExpanded = !environmentExpanded"></mat-icon>
-            <mat-icon fontIcon="arrow_drop_up" class="subsection-expander-icon" *ngIf="!environmentExpanded" (click)="environmentExpanded = !environmentExpanded"></mat-icon>
+            <mat-icon fontIcon="arrow_right" class="subsection-expander-icon" *ngIf="!environmentExpanded" (click)="environmentExpanded = !environmentExpanded"></mat-icon>
             <span class="subsection-expander-title">Environment Variables</span>
         </div>
         <div *ngIf="environmentExpanded">
@@ -38,7 +38,7 @@
 
         <div class="subsection-expander-header">
             <mat-icon fontIcon="arrow_drop_down" class="subsection-expander-icon" *ngIf="outputsExpanded" (click)="outputsExpanded = !outputsExpanded"></mat-icon>
-            <mat-icon fontIcon="arrow_drop_up" class="subsection-expander-icon" *ngIf="!outputsExpanded" (click)="outputsExpanded = !outputsExpanded"></mat-icon>
+            <mat-icon fontIcon="arrow_right" class="subsection-expander-icon" *ngIf="!outputsExpanded" (click)="outputsExpanded = !outputsExpanded"></mat-icon>
             <span class="subsection-expander-title">Model Outputs</span>
         </div>
 

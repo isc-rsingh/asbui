@@ -38,7 +38,7 @@
 </mat-accordion> -->
 <div class="expander-header">
     <mat-icon fontIcon="arrow_drop_down" class="expander-icon" *ngIf="expanded" (click)="expanded = !expanded"></mat-icon>
-    <mat-icon fontIcon="arrow_drop_up" class="expander-icon" *ngIf="!expanded" (click)="expanded = !expanded"></mat-icon>
+    <mat-icon fontIcon="arrow_right" class="expander-icon" *ngIf="!expanded" (click)="expanded = !expanded"></mat-icon>
     <span class="expander-title">Model Templates</span>
 </div>
 <section class="content-container">
@@ -51,7 +51,7 @@
 
         <div class="subsection-expander-header">
             <mat-icon fontIcon="arrow_drop_down" class="subsection-expander-icon" *ngIf="standardExpanded" (click)="standardExpanded = !standardExpanded"></mat-icon>
-            <mat-icon fontIcon="arrow_drop_up" class="subsection-expander-icon" *ngIf="!standardExpanded" (click)="standardExpanded = !standardExpanded"></mat-icon>
+            <mat-icon fontIcon="arrow_right" class="subsection-expander-icon" *ngIf="!standardExpanded" (click)="standardExpanded = !standardExpanded"></mat-icon>
             <span class="subsection-expander-title">Standard Templates</span>
         </div>
 
@@ -64,7 +64,7 @@
 
         <div class="subsection-expander-header">
             <mat-icon fontIcon="arrow_drop_down" class="subsection-expander-icon" *ngIf="userExpanded" (click)="userExpanded = !userExpanded"></mat-icon>
-            <mat-icon fontIcon="arrow_drop_up" class="subsection-expander-icon" *ngIf="!userExpanded" (click)="userExpanded = !userExpanded"></mat-icon>
+            <mat-icon fontIcon="arrow_right" class="subsection-expander-icon" *ngIf="!userExpanded" (click)="userExpanded = !userExpanded"></mat-icon>
             <span class="subsection-expander-title">User Templates</span>
         </div>
 
@@ -77,7 +77,7 @@
 
         <div class="subsection-expander-header">
             <mat-icon fontIcon="arrow_drop_down" class="subsection-expander-icon" *ngIf="userExpanded" (click)="userExpanded = !userExpanded"></mat-icon>
-            <mat-icon fontIcon="arrow_drop_up" class="subsection-expander-icon" *ngIf="!userExpanded" (click)="userExpanded = !userExpanded"></mat-icon>
+            <mat-icon fontIcon="arrow_right" class="subsection-expander-icon" *ngIf="!userExpanded" (click)="userExpanded = !userExpanded"></mat-icon>
             <span class="subsection-expander-title">Block Templates</span>
         </div>
 

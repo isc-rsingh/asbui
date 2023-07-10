@@ -30,7 +30,7 @@ export class StepTypeDropdownComponent {
 
   ngOnInit(): void {
     this.stepService.GetStepTypes$().pipe(takeUntil(this.destroy$)).subscribe((stepTypes) => {
-      this.stepTypes = stepTypes.filter(s=>s.canAddToGroup);
+      this.stepTypes = stepTypes.filter(s=>s.canAddToGroup || s.jsonName === this.stepType);
     });
   }
 

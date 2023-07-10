@@ -1,8 +1,9 @@
 .editor-pane-container {
     padding-left: 22px;
     padding-right:22px;
-    max-height: calc(100vh - 10em );
+    max-height: calc(100vh - 5em );
     overflow: auto;
+    background-color:#FBFBFB;
 }
 .search-input-container {
     display:grid;
@@ -108,7 +109,7 @@
 .buttons-container .button-container.selected {
     color:#333695;
     background-color: #FFFFFF;
-    border: 1px solid #CBCBCB;
+    border: 2px solid #333695;
 }
 
 .bread-crumb-container {
