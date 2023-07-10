@@ -16,9 +16,57 @@ export class AppComponent implements OnInit {
   
   
   ngOnInit(): void {
-    this.initFakeDocument();
+    this.initBlankDocument();
   }
 
+  initBlankDocument() {
+    this.currentState.setCurrentDocument(
+    {
+      "modelName": "New Model",
+      "modelVersion": "0.1.2",
+      "formatVersion": 1,
+      "environment": {},
+      "pipelines": [
+        {
+          "name": "main",
+          "stepId": 1,
+          "stepType": StepType.Pipeline,
+          "steps": [
+            {
+              "stepType": StepType.SqlPopulate,
+              "stepId": 2,
+              "arguments": {
+                "annotationName": "",
+                "tableName": "",
+                "groupingField": "",
+                "where": {
+                  "clause": "",
+                  "parameters": []
+                },
+                "annotationProperties": []
+              },
+              "disabled": false,
+              "description": "Populate data"
+            },
+            {
+              "stepId": 3,
+              "stepType": StepType.Export,
+              "arguments": {
+                "tableName": "",
+                "fullAnnotation": true,
+                "includeDeleted": true,
+                "columnSpecs": [
+                ]
+              },
+              "description": "Export data",
+              "disabled": true
+            }
+          ],
+          "description": "New pipe"
+        }
+      ]
+    });
+  }
 
   initFakeDocument() {
     this.currentState.setCurrentDocument({

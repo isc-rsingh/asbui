@@ -53,7 +53,7 @@ export class EditorPaneComponent implements OnInit, OnDestroy{
       this.currentStepId = step;
       this.breadcrumbPath = this.stepService.GetPathToStepId(this.currentDocument, this.currentStepId ?? 0);
 
-      if (this.breadcrumbPath === null || !this.breadcrumbPath.length) {
+      if (this.breadcrumbPath === null || !this.breadcrumbPath.length && this.currentDocument?.pipelines?.length) {
         this.breadcrumbPath = [this.currentDocument.pipelines[0].stepId];
       }
 

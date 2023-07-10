@@ -3,6 +3,7 @@ import { GroupObject, ObjectFile, OperationObject, PipelineObject, StepType } fr
 import { EditorContextService, SelectedCodeView } from '../services/editor-context.service';
 import { Subject, takeUntil } from 'rxjs';
 import { StepService } from '../services/step.service';
+import { DragHelperService, DragSource } from '../services/drag-helper.service';
 
 @Component({
   selector: 'app-model-editor',
@@ -26,7 +27,11 @@ export class ModelEditorComponent implements OnInit, OnDestroy {
     this.filterGroupsForContext();
   }
 
-  constructor(private editorContextService:EditorContextService, private stepService:StepService) {}
+  constructor(
+    private editorContextService:EditorContextService, 
+    private stepService:StepService,
+    private dragHelperService: DragHelperService,
+  ) {}
 
   ngOnInit(): void {
     this.editorContextService.currentFocusedStepId$.pipe(takeUntil(this.destroy$)).subscribe((step) => {
@@ -48,6 +53,9 @@ export class ModelEditorComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
 
   private filterGroupsForContext() {
+    if (!this._currentDocument?.pipelines?.length) {
+      return;
+    }
     let operationObjects = this._currentDocument.pipelines[0].steps;
     if (this.currentStepId) {
       const step = this.stepService.GetStep(this.currentDocument, this.currentStepId);
@@ -69,6 +77,25 @@ export class ModelEditorComponent implements OnInit, OnDestroy {
 
   addNew() {
     
+  }
+
+  dragOverArrow(evt:DragEvent, step: OperationObject):boolean | void { 
+    if (this.dragHelperService.isBlockTemplate()) {
+      const dataTransfer = evt.dataTransfer;
+      if (dataTransfer==null) {
+        return true;
+      }
+
+      evt.preventDefault();
+      return false;
+    }
+  }
+
+  dropOnArrow(evt:DragEvent, step:OperationObject) {
+    const ctx = this.dragHelperService.dragContext;
+    if (ctx && this.dragHelperService.isBlockTemplate()) {
+      this.stepService.AddBlockTemplateAfterStep(ctx.id+'', step.stepId) ;
+    }
   }
   
   

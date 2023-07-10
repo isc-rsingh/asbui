@@ -99,6 +99,24 @@ export class GroupEditorComponent implements OnInit, OnDestroy{
     this.editorContextService.setCurrentFocusedBlockId$(this.group.stepId);
   }
 
+  dragOverArrow(evt:DragEvent, step: OperationObject):boolean | void { 
+    if (this.dragHelperService.isBlockTemplate()) {
+      const dataTransfer = evt.dataTransfer;
+      if (dataTransfer==null) {
+        return true;
+      }
+
+      evt.preventDefault();
+      return false;
+    }
+  }
+
+  dropOnArrow(evt:DragEvent, step:OperationObject) {
+    const ctx = this.dragHelperService.dragContext;
+    if (ctx && this.dragHelperService.isBlockTemplate()) {
+      this.stepService.AddBlockTemplateAfterStep(ctx.id+'', step.stepId) ;
+    }
+  }
 
   get StepType() {
     return StepType;

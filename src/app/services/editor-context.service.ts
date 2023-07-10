@@ -16,7 +16,7 @@ export class EditorContextService {
   
   private _currentFocusedStepId = new BehaviorSubject<number | null>(null);
   private _currentFocusedBlockId = new BehaviorSubject<number | null>(null);
-  private _currentSelectedCodeView = new BehaviorSubject<SelectedCodeView>(SelectedCodeView.Step);
+  private _currentSelectedCodeView = new BehaviorSubject<SelectedCodeView>(SelectedCodeView.Block);
 
   get currentFocusedStepId(): number | null {
     return this._currentFocusedStepId.value;
