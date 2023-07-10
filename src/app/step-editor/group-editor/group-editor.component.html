@@ -7,8 +7,11 @@
         <div class="step-container" *ngIf="currentView !== SelectedCodeView.Block">
             <app-step-editor [step]="step" *ngFor="let step of group.arguments?.steps" [groupId]="group.stepId"></app-step-editor> 
         </div>
-        <div class="step-container" *ngIf="currentView === SelectedCodeView.Block">
+        <div class="step-container" *ngIf="currentView === SelectedCodeView.Block && !group.arguments?.blockName">
             <app-step-environment-variables [step]="group"></app-step-environment-variables>
+        </div>
+        <div class="step-container" *ngIf="currentView === SelectedCodeView.Block && group.arguments?.blockName">
+            <app-block-editor [step]="group"></app-block-editor>   
         </div>
         <div class="add-new-step-container" *ngIf="currentView !== SelectedCodeView.Block">
             <mat-icon fontIcon="add_circle_outline" class="add-icon" (click)="addNewStep()"></mat-icon>

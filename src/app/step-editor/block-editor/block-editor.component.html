@@ -1,0 +1,6 @@
+<div class="block-editor-container">
+    <span class="block-editor-statement" *ngFor="let statement of blockDefinition?.statements">
+        <app-block-text *ngIf="statementIsText(statement)" [blockText]="statementText(statement)" [textInUse]="textInUse(statement)"></app-block-text>
+        <app-block-number *ngIf="statementIsNumberInput(statement)" [BlockDefinition]="blockDefinition" [BlockPrompt]="asPrompt(statement)" [GroupStep]="groupObject"></app-block-number>
+    </span>
+</div>

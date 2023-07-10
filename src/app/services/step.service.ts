@@ -318,10 +318,8 @@ export class StepService {
   
   public async AddBlockTemplateBeforeGroup(blockTemplateName:string, groupIdx:number) {
     const parentStep = this.GetParentStep(this.currentState.currentDocument, groupIdx) as GroupObject;
+    let nextStepId = this.highestStepInPipeline(this.currentState.currentDocument) + 1;
     if (parentStep){
-      const template = await firstValueFrom(this.templateService.GetBlockTemplate(blockTemplateName));
-      if (!template) return;
-      let nextStepId = this.highestStepInPipeline(this.currentState.currentDocument) + 1;
       const newGroup = {
         name:blockTemplateName,
         description:blockTemplateName,
@@ -329,14 +327,11 @@ export class StepService {
         stepType:StepType.Group,
         disabled:false,
         arguments: {
-          steps:template.steps.map((s:OperationObject) => {
-            return {
-              ...s,
-              stepId:(++nextStepId),
-            }
-          })
+          steps:[],
+          blockName:blockTemplateName
         }
       };
+
       let stepArray:OperationObject[] = [];
       switch (parentStep.stepType) {
         case StepType.Pipeline: {
@@ -354,16 +349,10 @@ export class StepService {
       if (siblingIdx < 0) return;
 
       stepArray.splice(siblingIdx,0,newGroup);
-
-      Object.keys(template.environment).forEach(k=> {
-        if (!this.currentState.currentDocument.environment[k]) {
-          this.currentState.currentDocument.environment[k] = template.environment[k];
-        }
-      });
     }
   }
 
-  private highestStepInPipeline(pipeline:ObjectFile ) {
+  highestStepInPipeline(pipeline:ObjectFile ) {
     let maxStepId = 0;
     pipeline.pipelines.forEach(p=>{
       maxStepId = this.highestStepId(p.steps,maxStepId);

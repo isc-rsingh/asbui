@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { TemplateFile } from '../types/template';
-import { BlockTemplate, TemplateServiceService } from '../services/template-service.service';
+import { TemplateServiceService } from '../services/template-service.service';
 import { firstValueFrom, lastValueFrom} from 'rxjs';
 import { CurrentStateService } from '../services/current-state.service';
 import { DragHelperService, DragObjectType, DragSource } from '../services/drag-helper.service';
 import { RunService } from '../services/run.service';
+import { BlockDefinition, BlockTemplateService } from '../services/block-template.service';
 
 @Component({
   selector: 'app-templates-outline',
@@ -21,22 +22,23 @@ export class TemplatesOutlineComponent implements OnInit {
   public filter = "";
   public systemTemplates: TemplateFile[];
   public userTemplates: TemplateFile[];
-  public blockTemplates: BlockTemplate[];
+  public blockTemplates: BlockDefinition[];
   public filteredSystemTemplates: TemplateFile[];
   public filteredUserTemplates: TemplateFile[];
-  public filteredBlockTemplates: BlockTemplate[];
+  public filteredBlockTemplates: BlockDefinition[];
 
   constructor(
     private templateService:TemplateServiceService, 
     private currentStateService:CurrentStateService,
     private dragHelperService:DragHelperService,
     private runService:RunService,
+    private blockService:BlockTemplateService,
   ) {}
 
   async ngOnInit() {
     this.systemTemplates = await lastValueFrom(this.templateService.GetSystemTemplates());
     this.userTemplates = await lastValueFrom(this.templateService.GetUserTemplates());
-    this.blockTemplates = await lastValueFrom(this.templateService.GetBlockTemplates());
+    this.blockTemplates = await lastValueFrom(this.blockService.GetBlockTemplates());
 
     this.filterResults();
   }
@@ -54,7 +56,7 @@ export class TemplatesOutlineComponent implements OnInit {
     this.currentStateService.setCurrentRunHistory(runHistory);
   }
 
-  dragStart(evt:DragEvent, blockTemplate:BlockTemplate) {
+  dragStart(evt:DragEvent, blockTemplate:BlockDefinition) {
     this.dragHelperService.dragContext = {
       id:blockTemplate.blockName,
       dragObjectType: DragObjectType.BlockTemplate,

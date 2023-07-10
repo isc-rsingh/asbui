@@ -26,7 +26,7 @@ import { TemplatesInformationComponent } from './templates-information/templates
 import { ModelEditorComponent } from './model-editor/model-editor.component';
 import { StepEditorComponent } from './step-editor/step-editor.component';
 import { PipelineDiagramComponent } from './pipeline-diagram/pipeline-diagram.component';
-import { GroupEditorComponent } from './model-editor/group-editor/group-editor.component';
+import { GroupEditorComponent } from './step-editor/group-editor/group-editor.component';
 import { DataPreviewComponent } from './data-preview/data-preview.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS, MatFormFieldDefaultOptions } from '@angular/material/form-field';
@@ -53,6 +53,9 @@ import { BlockVariablePaneComponent } from './work-area-pane/block-variable-pane
 import { BlockSettingsPaneComponent } from './work-area-pane/block-settings-pane/block-settings-pane.component';
 import { BlockRunReportPaneComponent } from './work-area-pane/block-run-report-pane/block-run-report-pane.component';
 import { RunHistoryItemComponent } from './work-area-pane/block-run-report-pane/run-history-item/run-history-item.component';
+import { BlockEditorComponent } from './step-editor/block-editor/block-editor.component';
+import { BlockTextComponent } from './step-editor/block-editor/block-text/block-text.component';
+import { BlockNumberComponent } from './step-editor/block-editor/block-number/block-number.component';
 
 const appearance: MatFormFieldDefaultOptions = {
   appearance: 'outline'
@@ -92,7 +95,10 @@ const appearance: MatFormFieldDefaultOptions = {
     BlockVariablePaneComponent,
     BlockSettingsPaneComponent,
     BlockRunReportPaneComponent,
-    RunHistoryItemComponent
+    RunHistoryItemComponent,
+    BlockEditorComponent,
+    BlockTextComponent,
+    BlockNumberComponent
   ],
   imports: [
     BrowserModule,

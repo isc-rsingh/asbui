@@ -40,6 +40,7 @@ export interface GroupObject extends OperationObject {
 }
 export interface GroupArgs {
   steps: OperationObject[];
+  blockName?: string;
 }
 export interface ExportArgs extends ExportSpec {
 
