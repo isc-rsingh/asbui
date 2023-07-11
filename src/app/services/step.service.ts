@@ -316,77 +316,7 @@ export class StepService {
   }
 
   
-  public async AddBlockTemplateBeforeGroup(blockTemplateName:string, groupIdx:number) {
-    const parentStep = this.GetParentStep(this.currentState.currentDocument, groupIdx) as GroupObject;
-    let nextStepId = this.highestStepInPipeline(this.currentState.currentDocument) + 1;
-    if (parentStep){
-      const newGroup = {
-        name:blockTemplateName,
-        description:blockTemplateName,
-        stepId:nextStepId,
-        stepType:StepType.Group,
-        disabled:false,
-        arguments: {
-          steps:[],
-          blockName:blockTemplateName
-        }
-      };
-
-      let stepArray:OperationObject[] = [];
-      switch (parentStep.stepType) {
-        case StepType.Pipeline: {
-          stepArray = (parentStep as PipelineObject).steps;
-          break;
-        }
-        case StepType.Group: {
-          stepArray = (parentStep as GroupObject).arguments?.steps || [];
-          break;
-        }
-        default:
-          return;
-      }
-      const siblingIdx = stepArray.findIndex(x=>x.stepId === groupIdx);
-      if (siblingIdx < 0) return;
-
-      stepArray.splice(siblingIdx,0,newGroup);
-    }
-  }
-
-  public async AddBlockTemplateAfterStep(blockTemplateName:string, stepId:number) {
-    const parentStep = this.GetParentStep(this.currentState.currentDocument, stepId) as GroupObject;
-    let nextStepId = this.highestStepInPipeline(this.currentState.currentDocument) + 1;
-    if (parentStep){
-      const newGroup = {
-        name:blockTemplateName,
-        description:blockTemplateName,
-        stepId:nextStepId,
-        stepType:StepType.Group,
-        disabled:false,
-        arguments: {
-          steps:[],
-          blockName:blockTemplateName
-        }
-      };
-
-      let stepArray:OperationObject[] = [];
-      switch (parentStep.stepType) {
-        case StepType.Pipeline: {
-          stepArray = (parentStep as PipelineObject).steps;
-          break;
-        }
-        case StepType.Group: {
-          stepArray = (parentStep as GroupObject).arguments?.steps || [];
-          break;
-        }
-        default:
-          return;
-      }
-      const siblingIdx = stepArray.findIndex(x=>x.stepId === stepId);
-      if (siblingIdx < 0) return;
-
-      stepArray.splice(siblingIdx + 1,0,newGroup);
-    }
-  }
+  
   
 
   highestStepInPipeline(pipeline:ObjectFile ) {

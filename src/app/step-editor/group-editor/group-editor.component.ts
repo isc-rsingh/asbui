@@ -1,6 +1,7 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
+import { BlockTemplateService } from 'src/app/services/block-template.service';
 import { DragHelperService } from 'src/app/services/drag-helper.service';
 import { EditorContextService, SelectedCodeView } from 'src/app/services/editor-context.service';
 import { StepService } from 'src/app/services/step.service';
@@ -32,6 +33,7 @@ export class GroupEditorComponent implements OnInit, OnDestroy{
     private stepService:StepService, 
     private editorContextService:EditorContextService,
     private dragHelperService:DragHelperService,
+    private blockService:BlockTemplateService,
     ) {}
 
   private destroy$: Subject<void> = new Subject<void>();
@@ -88,10 +90,13 @@ export class GroupEditorComponent implements OnInit, OnDestroy{
     }
   }
 
-  drop(evt:DragEvent) {
+  async drop(evt:DragEvent) {
     const ctx = this.dragHelperService.dragContext;
     if (ctx && this.dragHelperService.isBlockTemplate()) {
-      this.stepService.AddBlockTemplateBeforeGroup(ctx.id+'',this.group.stepId);
+      const newStepId = await this.blockService.AddBlockTemplateBeforeGroup(ctx.id+'',this.group.stepId);
+      if (newStepId) {
+        this.editorContextService.setCurrentFocusedBlockId$(newStepId);
+      }
     }
   }
 
@@ -111,10 +116,13 @@ export class GroupEditorComponent implements OnInit, OnDestroy{
     }
   }
 
-  dropOnArrow(evt:DragEvent, step:OperationObject) {
+  async dropOnArrow(evt:DragEvent, step:OperationObject) {
     const ctx = this.dragHelperService.dragContext;
     if (ctx && this.dragHelperService.isBlockTemplate()) {
-      this.stepService.AddBlockTemplateAfterStep(ctx.id+'', step.stepId) ;
+      const newStepId = await this.blockService.AddBlockTemplateAfterStep(ctx.id+'', step.stepId) ;
+      if (newStepId) {
+        this.editorContextService.setCurrentFocusedBlockId$(newStepId);
+      }
     }
   }
 

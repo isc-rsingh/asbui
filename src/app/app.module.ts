@@ -55,7 +55,8 @@ import { BlockRunReportPaneComponent } from './work-area-pane/block-run-report-p
 import { RunHistoryItemComponent } from './work-area-pane/block-run-report-pane/run-history-item/run-history-item.component';
 import { BlockEditorComponent } from './step-editor/block-editor/block-editor.component';
 import { BlockTextComponent } from './step-editor/block-editor/block-text/block-text.component';
-import { BlockNumberComponent } from './step-editor/block-editor/block-number/block-number.component';
+import { BlockInputComponent } from './step-editor/block-editor/block-input/block-input.component';
+import { BlockDropdownComponent } from './step-editor/block-editor/block-dropdown/block-dropdown.component';
 
 const appearance: MatFormFieldDefaultOptions = {
   appearance: 'outline'
@@ -98,7 +99,8 @@ const appearance: MatFormFieldDefaultOptions = {
     RunHistoryItemComponent,
     BlockEditorComponent,
     BlockTextComponent,
-    BlockNumberComponent
+    BlockInputComponent,
+    BlockDropdownComponent
   ],
   imports: [
     BrowserModule,

@@ -44,7 +44,11 @@ export class BlockEditorComponent {
 
   statementIsNumberInput(statement:BlockPrompt | BlockText):boolean {
     const prompt = statement as BlockPrompt;
-    return (!!prompt.promptid) && prompt.promptType === BlockPromptType.Number;
+    return (!!prompt.promptid) && prompt.promptType === BlockPromptType.Number && !prompt.promptValues;
+  }
+
+  statementIsDropdown(statement:BlockPrompt | BlockText): boolean {
+    return !!(statement as BlockPrompt).promptValues;
   }
 
   statementText(statement:BlockPrompt | BlockText):string {
@@ -57,6 +61,7 @@ export class BlockEditorComponent {
 
   textInUse(statement:BlockPrompt | BlockText): boolean {
     const blockText = (statement as BlockText);
+    if (blockText.alwaysInUse) { return true; }
     let rslt = blockText.associatedPrompts?.some(p=>{
       const prompt = this.blockDefinition?.statements.find(x=>(x as BlockPrompt).promptid === p) as BlockPrompt;
       if (prompt) {

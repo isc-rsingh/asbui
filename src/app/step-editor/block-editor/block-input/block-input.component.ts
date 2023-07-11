@@ -1,18 +1,19 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Subscription } from 'rxjs';
-import { BlockDefinition, BlockPrompt, BlockTemplateService } from 'src/app/services/block-template.service';
+import { BlockDefinition, BlockPrompt, BlockPromptType, BlockTemplateService } from 'src/app/services/block-template.service';
 import { GroupObject } from 'src/app/types/model-file';
 
 @Component({
-  selector: 'app-block-number',
-  templateUrl: './block-number.component.html',
-  styleUrls: ['./block-number.component.scss']
+  selector: 'app-block-input',
+  templateUrl: './block-input.component.html',
+  styleUrls: ['./block-input.component.scss']
 })
-export class BlockNumberComponent implements OnInit, OnDestroy {
+export class BlockInputComponent implements OnInit, OnDestroy {
   @Input() GroupStep:GroupObject;
   @Input() BlockPrompt:BlockPrompt;
   @Input() BlockDefinition:BlockDefinition | undefined;
+  
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,4 +41,16 @@ export class BlockNumberComponent implements OnInit, OnDestroy {
   });
   
   sub!: Subscription;
+
+  get inputType() {
+    switch (this.BlockPrompt.promptType) {
+      case BlockPromptType.Date:
+        return "date";
+      case BlockPromptType.Number:
+        return "number";
+      default:
+        return "text";
+
+    }
+  }
 }

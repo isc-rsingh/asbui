@@ -1,0 +1,6 @@
+<form [formGroup]="form">
+    <select formControlName="promptValue">
+        <option value=""></option>
+        <option *ngFor="let pv of PromptValues" [ngValue]="pv.key">{{pv.value}}</option>
+    </select>
+</form>

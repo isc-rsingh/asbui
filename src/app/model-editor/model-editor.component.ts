@@ -4,6 +4,7 @@ import { EditorContextService, SelectedCodeView } from '../services/editor-conte
 import { Subject, takeUntil } from 'rxjs';
 import { StepService } from '../services/step.service';
 import { DragHelperService, DragSource } from '../services/drag-helper.service';
+import { BlockTemplateService } from '../services/block-template.service';
 
 @Component({
   selector: 'app-model-editor',
@@ -31,6 +32,7 @@ export class ModelEditorComponent implements OnInit, OnDestroy {
     private editorContextService:EditorContextService, 
     private stepService:StepService,
     private dragHelperService: DragHelperService,
+    private blockService: BlockTemplateService,
   ) {}
 
   ngOnInit(): void {
@@ -91,10 +93,13 @@ export class ModelEditorComponent implements OnInit, OnDestroy {
     }
   }
 
-  dropOnArrow(evt:DragEvent, step:OperationObject) {
+  async dropOnArrow(evt:DragEvent, step:OperationObject) {
     const ctx = this.dragHelperService.dragContext;
     if (ctx && this.dragHelperService.isBlockTemplate()) {
-      this.stepService.AddBlockTemplateAfterStep(ctx.id+'', step.stepId) ;
+      const newStepId = await this.blockService.AddBlockTemplateAfterStep(ctx.id+'', step.stepId);
+      if (newStepId) {
+        this.editorContextService.setCurrentFocusedBlockId$(newStepId);
+      }
     }
   }
   
